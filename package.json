@@ -3,6 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "ajv": "^6.5.3",
+    "apollo-boost": "^0.1.16",
+    "graphql": "^0.12.3",
+    "graphql-tag": "^2.9.2",
+    "radium": "^0.25.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-scripts": "1.1.5"

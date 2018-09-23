@@ -7,6 +7,7 @@ GitHub Galaxy is a web application that aims to help you manage your GitHub star
 
 Tech Stack:
 * React
+* [Apollo Client](https://www.apollographql.com/docs/react/) and [GraphQL](https://graphql.org/)
 * Inline styling library: [Radium](https://formidable.com/open-source/radium/)
 
 ## Table of Contents
