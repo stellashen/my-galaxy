@@ -1,6 +1,10 @@
-# GitHub Galaxy - The Home for Your GitHub Stars
+# My Galaxy - GitHub Stars Manager
 
-GitHub Galaxy is a web application that aims to help you manage your GitHub stars:
+[Install App](https://github.com/apps/my-galaxy)
+
+[Live Site](https://mygalaxyapp.herokuapp.com/)
+
+My Galaxy is a web application that aims to help you manage your GitHub stars:
 
 - View repositories you have starred,
 - search for and star new repositories,
@@ -20,6 +24,18 @@ Built with:
   - [2](#2)
 
 ## MVP List
+
+1. Host on Heroku and Create GitHub App
+
+2. Authentication
+
+3. Get starred repositories
+
+4. Unstar repositories
+
+5. Search for and star new repositories
+
+6. Jest tests
 
 ## Technical Details
 
