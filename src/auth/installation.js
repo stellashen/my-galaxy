@@ -11,4 +11,5 @@ function authenticateInstallation() {
     "Accept",
     "application/vnd.github.machine-man-preview+json"
   );
+  http.send(null);
 }
