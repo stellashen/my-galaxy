@@ -33,4 +33,4 @@ var data = {
 var stringifiedData = CryptoJS.enc.Utf8.parse(JSON.stringify(data));
 var encodedData = base64url(stringifiedData);
 
-var token = encodedHeader + "." + encodedData;
+export const token = encodedHeader + "." + encodedData;
