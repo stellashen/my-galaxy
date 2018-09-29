@@ -22,7 +22,7 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 - Rails 5
 - React
 - [GitHub GraphQL API](https://developer.github.com/v4/)
-- [Apollo Client](https://www.apollographql.com/docs/react/): use GraphQL to build client applications.
+- [Apollo Client](https://www.apollographql.com/docs/react/): use GraphQL to build client applications
 - [Radium](https://formidable.com/open-source/radium/): Inline styling library
 
 ## MVP List
