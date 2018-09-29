@@ -10,11 +10,12 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 
 ## Table of Contents
 
-- [Technologies](#Technologies)
+- [Technologies](#technologies)
 - [MVP List](#mvp-list)
 - [Technical Details](#technical-details)
   - [1](#1)
   - [2](#2)
+- [References](#references)
 
 ## Technologies
 
@@ -43,3 +44,7 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 ### 1
 
 ### 2
+
+## References
+
+[How to Create a React App with Ruby on Rails](https://zayne.io/blog/how-to-create-a-react-app-with-ruby-on-rails)
