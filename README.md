@@ -1,7 +1,5 @@
 # My Galaxy - GitHub Stars Manager
 
-[Install App](https://github.com/apps/my-galaxy)
-
 [Live Site](https://mygalaxyapp.herokuapp.com/)
 
 My Galaxy is a web application that aims to help you manage your GitHub stars:
@@ -12,7 +10,8 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 
 Built with:
 
-- React
+- Template was set up with [create-react-app](https://github.com/facebook/create-react-app)
+- OAuth Web Application Flow was set up with [Gatekeeper](https://github.com/prose/gatekeeper)
 - [Apollo Client](https://www.apollographql.com/docs/react/) and [GitHub GraphQL](https://developer.github.com/v4/)
 - Inline styling library: [Radium](https://formidable.com/open-source/radium/)
 
@@ -25,7 +24,7 @@ Built with:
 
 ## MVP List
 
-1. Host on Heroku and Create GitHub App
+1. Host on Heroku and Create OAuth App
 
 2. Authentication
 
