@@ -1,27 +1,14 @@
 {
-  "name": "github-galaxy",
-  "version": "0.1.0",
+  "name": "my-galaxy",
   "private": true,
   "dependencies": {
-    "ajv": "^6.5.3",
-    "apollo-boost": "^0.1.16",
-    "crypto-js": "^3.1.9-1",
-    "graphql": "^0.13.0",
-    "graphql-tag": "^2.9.2",
-    "radium": "^0.25.0",
+    "@rails/webpacker": "3.5",
+    "babel-preset-react": "^6.24.1",
+    "prop-types": "^15.6.2",
     "react": "^16.5.2",
-    "react-apollo": "^2.1.11",
-    "react-dom": "^16.5.2",
-    "react-router": "^4.3.1",
-    "react-scripts": "1.1.5"
+    "react-dom": "^16.5.2"
   },
-  "resolutions": {
-    "graphql": "^0.13.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
   }
 }

@@ -1,43 +1,24 @@
-# My Galaxy - GitHub Stars Manager
+# README
 
-[Live Site](https://mygalaxyapp.herokuapp.com/)
+This README would normally document whatever steps are necessary to get the
+application up and running.
 
-My Galaxy is a web application that aims to help you manage your GitHub stars:
+Things you may want to cover:
 
-- View repositories you have starred,
-- search for and star new repositories,
-- and un-star repositories.
+* Ruby version
 
-Built with:
+* System dependencies
 
-- Template was set up with [create-react-app](https://github.com/facebook/create-react-app)
-- OAuth Web Application Flow was set up with [Gatekeeper](https://github.com/prose/gatekeeper)
-- [Apollo Client](https://www.apollographql.com/docs/react/) and [GitHub GraphQL](https://developer.github.com/v4/)
-- Inline styling library: [Radium](https://formidable.com/open-source/radium/)
+* Configuration
 
-## Table of Contents
+* Database creation
 
-- [MVP List](#mvp-list)
-- [Technical Details](#technical-details)
-  - [1](#1)
-  - [2](#2)
+* Database initialization
 
-## MVP List
+* How to run the test suite
 
-1. Host on Heroku and Create OAuth App
+* Services (job queues, cache servers, search engines, etc.)
 
-2. Authentication
+* Deployment instructions
 
-3. Get starred repositories
-
-4. Unstar repositories
-
-5. Search for and star new repositories
-
-6. Jest tests
-
-## Technical Details
-
-### 1
-
-### 2
+* ...
