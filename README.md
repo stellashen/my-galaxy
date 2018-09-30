@@ -52,17 +52,23 @@ I created two apps for local development and production.
 
 For local development, set the callback url to `http://localhost:3000/auth/github/callback`
 
-Create `/config/local_env.yml` file and add it to `.gitignore`. Store client_id and client_secret as local environment variables:
+In the terminal, run `rails secret` to generate a new secret key.
+
+Create `/config/local_env.yml` file and add it to `.gitignore`. Store local environment variables:
 
 ```
 GITHUB_CLIENT_ID: 'replace with dev app id'
 GITHUB_CLIENT_SECRET: 'dev app secret'
+SECRET_KEY_BASE: 'new secret key'
 ```
 
 In `config/secrets.yml`, add github_client_id and github_client_secret:
 
 ```
-
+development:
+  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
+  github_client_id: <%= ENV["GITHUB_CLIENT_ID"] %>
+  github_client_secret: <%= ENV["GITHUB_CLIENT_SECRET"] %>
 ```
 
 ##### production
