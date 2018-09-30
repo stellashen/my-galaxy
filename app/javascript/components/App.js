@@ -1,21 +1,14 @@
 import React from "react";
-import ApolloClient from "apollo-boost";
-import { ApolloProvider } from "react-apollo";
+import { Switch, Route } from "react-router-dom";
 import Radium from "radium";
 import color from "color";
-
-const client = new ApolloClient({
-  uri: "https://api.github.com/graphql"
-});
 
 class App extends React.Component {
   render() {
     return (
-      <ApolloProvider client={client}>
-        <div id="app" style={[styles.base]}>
-          Hello World
-        </div>
-      </ApolloProvider>
+      <div id="app" style={[styles.base]}>
+        Hello World
+      </div>
     );
   }
 }

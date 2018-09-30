@@ -48,7 +48,7 @@ Refered to this article:
 
 I created two apps for local development and production.
 
-![OAUTH APPS](https://res.cloudinary.com/devleg/image/upload/v1538289635/apps.png)
+<img src="https://res.cloudinary.com/devleg/image/upload/v1538289635/apps.png" width="600">
 
 ##### development
 
