@@ -1,6 +1,6 @@
 # My Galaxy - GitHub Stars Manager
 
-[Live Site](https://mygalaxyapp.herokuapp.com/)
+[Live Site](https://my-galaxy.herokuapp.com/)
 
 My Galaxy is a web application that aims to help you manage your GitHub stars:
 
@@ -41,10 +41,49 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 
 ## Technical Details
 
-### 1
+### 1 OAuth
+
+Refered to this article:
+[How to Create a React App with Ruby on Rails](https://zayne.io/blog/how-to-create-a-react-app-with-ruby-on-rails)
+
+I created two apps for local development and production.
+
+##### development
+
+For local development, set the callback url to `http://localhost:3000/auth/github/callback`
+
+Create `/config/local_env.yml` file and add it to `.gitignore`. Store client_id and client_secret as local environment variables:
+
+```
+GITHUB_CLIENT_ID: 'replace with dev app id'
+GITHUB_CLIENT_SECRET: 'dev app secret'
+```
+
+In `config/secrets.yml`, add github_client_id and github_client_secret:
+
+```
+
+```
+
+##### production
+
+For production, set to `https://my-galaxy.herokuapp.com/auth/github/callback`
+
+In `config/secrets.yml`, add github_client_id and github_client_secret:
+
+```
+production:
+  secret_key_base: <%= ENV["SECRET_KEY_BASE"] %>
+  github_client_id: <%= ENV["GITHUB_CLIENT_ID"] %>
+  github_client_secret: <%= ENV["GITHUB_CLIENT_SECRET"] %>
+```
+
+Get id and secret from OAuth App settings page (after registering an app).
+
+In terminal, run:
+
+```
+heroku config:add GITHUB_CLIENT_ID='replace with production app id' GITHUB_CLIENT_SECRET='production app secret'
+```
 
 ### 2
-
-## References
-
-[How to Create a React App with Ruby on Rails](https://zayne.io/blog/how-to-create-a-react-app-with-ruby-on-rails)
