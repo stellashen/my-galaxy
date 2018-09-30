@@ -13,7 +13,7 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 - [Technologies](#technologies)
 - [MVP List](#mvp-list)
 - [Technical Details](#technical-details)
-  - [1](#1)
+  - [1 GitHub OAuth](#1-GitHub OAuth)
   - [2](#2)
 - [References](#references)
 
@@ -41,12 +41,14 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 
 ## Technical Details
 
-### 1 OAuth
+### 1 GitHub OAuth
 
 Refered to this article:
 [How to Create a React App with Ruby on Rails](https://zayne.io/blog/how-to-create-a-react-app-with-ruby-on-rails)
 
 I created two apps for local development and production.
+
+![OAUTH APPS](https://res.cloudinary.com/devleg/image/upload/v1538289635/apps.png)
 
 ##### development
 
@@ -84,7 +86,7 @@ production:
   github_client_secret: <%= ENV["GITHUB_CLIENT_SECRET"] %>
 ```
 
-Get id and secret from OAuth App settings page (after registering an app).
+After registering an app with home url https://my-galaxy.herokuapp.com/, get id and secret from its settings page.
 
 In terminal, run:
 
