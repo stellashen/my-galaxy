@@ -5,6 +5,9 @@ import color from "color";
 
 class App extends React.Component {
   render() {
+    const token = this.props.token.token;
+    console.log(token);
+    if (!token) return null;
     return (
       <div id="app" style={[styles.base]}>
         Hello World

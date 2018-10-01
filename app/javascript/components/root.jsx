@@ -4,14 +4,23 @@ import { ApolloProvider } from "react-apollo";
 import { HashRouter } from "react-router-dom";
 import App from "./App";
 
-const client = new ApolloClient({
-  uri: "https://api.github.com/graphql"
-});
+const getClient = token => {
+  return new ApolloClient({
+    uri: "https://api.github.com/graphql",
+    request: operation => {
+      operation.setContext({
+        headers: {
+          authorization: `Bearer ${token}`
+        }
+      });
+    }
+  });
+};
 
-const Root = () => (
-  <ApolloProvider client={client}>
+const Root = token => (
+  <ApolloProvider client={getClient(token.token)}>
     <HashRouter>
-      <App />
+      <App token={token} />
     </HashRouter>
   </ApolloProvider>
 );

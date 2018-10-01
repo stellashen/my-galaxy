@@ -4,9 +4,14 @@
 <% else %>
   <p>
     You are signed in as <%= current_user.username %>.  Click the button below to sign out.
+    Token: <%= current_user.oauth_token %>
   </p>
 
   <%= button_to "Sign Out", signout_path, method: :delete %>
+
+  <script type="text/javascript">
+    window.token = '<%= current_user.oauth_token %>'
+  </script>
 <% end %>
 
 <main id="root"></main>
