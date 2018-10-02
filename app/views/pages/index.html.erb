@@ -7,11 +7,7 @@
     </div>
   </div>
 <% else %>
-  <p>
-    You are signed in as <%= current_user.username %>.  Click the button below to sign out.
-  </p>
-
-  <%= button_to "Sign Out", signout_path, method: :delete %>
+    <%= button_to "Sign Out", signout_path, method: :delete, class: 'logout-button' %>
 
   <script type="text/javascript">
     window.token = '<%= current_user.oauth_token %>'

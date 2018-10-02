@@ -53,6 +53,27 @@ body {
   box-shadow: 0 8px 16px 0 wheat, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.logout-button {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+  z-index: 3;
+  font-size: 16px;
+  font-family: "Play", sans-serif;
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 2px solid white;
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+}
+
+.logout-button:hover {
+  background-color: #e51b23;
+}
+
 .logo {
   width: 500px;
 }

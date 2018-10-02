@@ -8,6 +8,8 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 - search for and star new repositories,
 - and un-star repositories.
 
+<img src="https://res.cloudinary.com/devleg/image/upload/v1538470339/signin.png" width="400">
+
 ## Table of Contents
 
 - [Technologies](#technologies)
