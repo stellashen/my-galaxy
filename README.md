@@ -15,7 +15,7 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 - [Technical Details](#technical-details)
   - [1 GitHub OAuth](#1-GitHub-OAuth)
   - [2 Get User Data](#2-get-user-data)
-- [References](#references)
+- [Images Source](#Images-Source)
 
 ## Technologies
 
@@ -132,3 +132,11 @@ GraphQL query:
   }
 }
 ```
+
+## Images Source
+
+Zoltan Tasi https://unsplash.com/photos/n8HAQ26GnMc
+
+## References
+
+[A complete React with Apollo and GraphQL Tutorial](https://www.robinwieruch.de/react-graphql-apollo-tutorial/)
