@@ -1,25 +1,8 @@
 import React from "react";
-import { Switch, Route } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Radium from "radium";
 import color from "color";
-import ApolloClient, { gql } from "apollo-boost";
-
-const GET_USER = gql`
-  {
-    viewer {
-      name
-      url
-      repositories(last: 1) {
-        edges {
-          node {
-            id
-            name
-          }
-        }
-      }
-    }
-  }
-`;
+import Profile from "./profile";
 
 class App extends React.Component {
   render() {
@@ -28,7 +11,7 @@ class App extends React.Component {
     if (!token) return null;
     return (
       <div id="app" style={[styles.base]}>
-        Hello World
+        <Route path="/" component={Profile} />
       </div>
     );
   }
