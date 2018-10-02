@@ -19,7 +19,8 @@ class App extends React.Component {
 var styles = {
   base: {
     color: "#000",
-    background: "#fff"
+    background: "#fff",
+    fontFamily: "Gothic A1, sans-serif"
   }
 };
 

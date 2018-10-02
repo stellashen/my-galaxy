@@ -55,12 +55,12 @@ body {
 
 .logout-button {
   position: absolute;
-  top: 20px;
-  right: 50px;
+  top: 32px;
+  right: 100px;
   z-index: 3;
-  font-size: 16px;
+  font-size: 10px;
   font-family: "Play", sans-serif;
-  padding: 10px 20px;
+  padding: 3px 20px;
   cursor: pointer;
   border: 2px solid white;
   -webkit-border-radius: 28;
@@ -72,6 +72,11 @@ body {
 
 .logout-button:hover {
   background-color: #e51b23;
+}
+
+.button:focus {
+  outline: none;
+  white-space: nowrap;
 }
 
 .logo {

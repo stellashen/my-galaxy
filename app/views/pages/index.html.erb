@@ -3,11 +3,11 @@
     <div class="login-container">
       <img src="https://res.cloudinary.com/devleg/image/upload/v1538468776/white_logo_transparent_background.png" alt="logo" class="logo">
       <h1>Welcome! Please Sign In:</h1>
-      <%= button_to 'Sign In with Github', '/auth/github', {class: 'login-button'} %>
+      <%= button_to 'Sign In with Github', '/auth/github', {class: 'login-button button'} %>
     </div>
   </div>
 <% else %>
-    <%= button_to "Sign Out", signout_path, method: :delete, class: 'logout-button' %>
+    <%= button_to "Sign Out", signout_path, method: :delete, class: 'logout-button button' %>
 
   <script type="text/javascript">
     window.token = '<%= current_user.oauth_token %>'

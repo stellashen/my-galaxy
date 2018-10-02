@@ -105,7 +105,7 @@ GraphQL query:
   viewer {
     name
     url
-    starredRepositories (first:5, orderBy: {field: STARRED_AT, direction: DESC}) {
+    starredRepositories (first:100, orderBy: {field: STARRED_AT, direction: DESC}) {
       edges {
         cursor
         node {
