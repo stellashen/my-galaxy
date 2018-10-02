@@ -1,10 +1,14 @@
 <% if current_user.blank? %>
-  <h1>Please Sign In</h1>
-  <%= link_to 'Sign In with Github', '/auth/github' %>
+  <div class="login">
+    <div class="login-container">
+      <img src="https://res.cloudinary.com/devleg/image/upload/v1538468776/white_logo_transparent_background.png" alt="logo" class="logo">
+      <h1>Welcome! Please Sign In:</h1>
+      <%= button_to 'Sign In with Github', '/auth/github', {class: 'login-button'} %>
+    </div>
+  </div>
 <% else %>
   <p>
     You are signed in as <%= current_user.username %>.  Click the button below to sign out.
-    Token: <%= current_user.oauth_token %>
   </p>
 
   <%= button_to "Sign Out", signout_path, method: :delete %>
