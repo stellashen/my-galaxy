@@ -10,6 +10,22 @@ const GET_CURRENT_USER = gql`
       login
       name
       url
+      starredRepositories(last: 3) {
+        edges {
+          cursor
+          node {
+            id
+            name
+            owner {
+              id
+              avatarUrl
+              login
+            }
+            url
+            updatedAt
+          }
+        }
+      }
     }
   }
 `;
@@ -27,9 +43,13 @@ const Profile = () => (
         return <Loading />;
       }
 
+      const stars = viewer.starredRepositories.edges.map((star, idx) => (
+        <li key={`${star.cursor}`}>{star.node.name}</li>
+      ));
+
       return (
         <div>
-          {viewer.name} {viewer.login} {viewer.url}
+          {viewer.name} {viewer.login} {viewer.url} {stars}
         </div>
       );
     }}
