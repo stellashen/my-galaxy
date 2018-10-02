@@ -7,7 +7,6 @@ import ErrorMessage from "./shared/error_message";
 const GET_CURRENT_USER = gql`
   {
     viewer {
-      login
       name
       url
       starredRepositories(
@@ -21,12 +20,21 @@ const GET_CURRENT_USER = gql`
             name
             owner {
               id
-              avatarUrl
               login
             }
+            description
             url
-            createdAt
             updatedAt
+            primaryLanguage {
+              id
+              name
+              color
+            }
+            stargazers {
+              totalCount
+            }
+            forkCount
+            viewerHasStarred
           }
         }
       }

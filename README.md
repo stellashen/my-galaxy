@@ -13,8 +13,8 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 - [Technologies](#technologies)
 - [MVP List](#mvp-list)
 - [Technical Details](#technical-details)
-  - [1 GitHub OAuth](#1-GitHub OAuth)
-  - [2](#2)
+  - [1 GitHub OAuth](#1-GitHub-OAuth)
+  - [2 Get User Data](#2-get-user-data)
 - [References](#references)
 
 ## Technologies
@@ -94,4 +94,41 @@ In terminal, run:
 heroku config:add GITHUB_CLIENT_ID='replace with production app id' GITHUB_CLIENT_SECRET='production app secret'
 ```
 
-### 2
+### 2 Get User Data
+
+GraphQL query:
+
+```
+{
+  viewer {
+    name
+    url
+    starredRepositories (first:5, orderBy: {field: STARRED_AT, direction: DESC}) {
+      edges {
+        cursor
+        node {
+          id
+          name
+          owner {
+            id
+            login
+          }
+          description
+          url
+          updatedAt
+          primaryLanguage {
+            id
+            name
+            color
+          }
+          stargazers {
+            totalCount
+          }
+          forkCount
+          viewerHasStarred
+        }
+      }
+    }
+  }
+}
+```
