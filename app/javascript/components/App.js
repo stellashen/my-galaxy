@@ -1,7 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import Radium from "radium";
-import color from "color";
 import Profile from "./profile";
 
 class App extends React.Component {
@@ -10,7 +9,7 @@ class App extends React.Component {
     console.log(token);
     if (!token) return null;
     return (
-      <div id="app" style={[styles.base]}>
+      <div id="app" style={styles.base}>
         <Route path="/" component={Profile} />
       </div>
     );
@@ -19,10 +18,8 @@ class App extends React.Component {
 
 var styles = {
   base: {
-    color: "red",
-    background: color("#0074d9")
-      .lighten(0.2)
-      .hexString()
+    color: "#000",
+    background: "#fff"
   }
 };
 

@@ -1,5 +1,7 @@
 # My Galaxy - GitHub Stars Manager
 
+<img src="https://res.cloudinary.com/devleg/image/upload/v1538509535/logo_transparent_background.png" width="300">
+
 [Live Site](https://my-galaxy.herokuapp.com/)
 
 My Galaxy is a web application that aims to help you manage your GitHub stars:
@@ -7,8 +9,6 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 - View repositories you have starred,
 - search for and star new repositories,
 - and un-star repositories.
-
-<img src="https://res.cloudinary.com/devleg/image/upload/v1538470339/signin.png" width="400">
 
 ## Table of Contents
 
@@ -138,6 +138,8 @@ GraphQL query:
 ## Images Source
 
 Zoltan Tasi https://unsplash.com/photos/n8HAQ26GnMc
+
+Muchmoji https://giphy.com/stickers/space-travel-39pqRFi5Gw0MpGug0w
 
 ## References
 

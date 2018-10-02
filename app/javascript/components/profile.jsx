@@ -10,7 +10,7 @@ const GET_CURRENT_USER = gql`
       name
       url
       starredRepositories(
-        first: 5
+        first: 100
         orderBy: { field: STARRED_AT, direction: DESC }
       ) {
         edges {
