@@ -6,7 +6,7 @@ import Profile from "./profile";
 
 class App extends React.Component {
   render() {
-    const token = this.props.token.token;
+    const token = this.props.token;
     console.log(token);
     if (!token) return null;
     return (

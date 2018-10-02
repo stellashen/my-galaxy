@@ -21,8 +21,8 @@ const getClient = token => {
   });
 };
 
-const Root = token => (
-  <ApolloProvider client={getClient(token.token)}>
+const Root = ({ token }) => (
+  <ApolloProvider client={getClient(token)}>
     <HashRouter>
       <App token={token} />
     </HashRouter>
