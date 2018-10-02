@@ -10,7 +10,10 @@ const GET_CURRENT_USER = gql`
       login
       name
       url
-      starredRepositories(last: 3) {
+      starredRepositories(
+        first: 5
+        orderBy: { field: STARRED_AT, direction: DESC }
+      ) {
         edges {
           cursor
           node {
@@ -22,6 +25,7 @@ const GET_CURRENT_USER = gql`
               login
             }
             url
+            createdAt
             updatedAt
           }
         }
