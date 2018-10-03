@@ -21,9 +21,10 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 
 ## Technologies
 
-- Rails 5
-- React
-- [GitHub GraphQL API](https://developer.github.com/v4/)
+- [Rails 5](https://rubyonrails.org/): A server-side web application framework written in Ruby
+- [React](https://reactjs.org/): A JavaScript library for building user interfaces
+- [Relay](http://facebook.github.io/relay/en/): A JavaScript framework for building data-driven React applications powered by GraphQL
+- [GitHub GraphQL API](https://developer.github.com/v4/): This is an OAuth app calling GitHub's GraphQL API
 - [Apollo Client](https://www.apollographql.com/docs/react/): use GraphQL to build client applications
 - [Radium](https://formidable.com/open-source/radium/): Inline styling library
 
@@ -35,9 +36,16 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 
 3. Get starred repositories
 
+- run query to get current user's starred repositories
+- display starred repositories
+- implement cursor-based pagination with Relay
+- add toggle view mode: expand or not
+
 4. Unstar repositories
 
 5. Search for and star new repositories
+
+- implement infinite scroll pagination
 
 6. Jest tests
 
@@ -110,6 +118,7 @@ GraphQL query:
       totalCount
       edges {
         cursor
+        starredAt
         node {
           id
           name

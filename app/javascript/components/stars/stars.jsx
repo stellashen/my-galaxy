@@ -9,12 +9,16 @@ const GET_STARS = gql`
   {
     viewer {
       starredRepositories(
-        first: 100
+        first: 10
         orderBy: { field: STARRED_AT, direction: DESC }
       ) {
         totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
         edges {
-          cursor
+          starredAt
           node {
             id
             name
@@ -42,7 +46,7 @@ const GET_STARS = gql`
   }
 `;
 
-const Profile = () => (
+const Stars = () => (
   <Query query={GET_STARS}>
     {({ data, loading, error }) => {
       if (error) {
@@ -55,14 +59,16 @@ const Profile = () => (
         return <Loading />;
       }
 
-      const stars = viewer.starredRepositories.edges.map((star, idx) => (
+      const starredRepositories = viewer.starredRepositories;
+
+      const totalCount = starredRepositories.totalCount;
+
+      const stars = starredRepositories.edges.map((star, idx) => (
         <li key={`${star.cursor}`}>
           {star.node.owner.login} /{" "}
           <p style={styles.strong}>{star.node.name}</p>
         </li>
       ));
-
-      const totalCount = viewer.starredRepositories.totalCount;
 
       return (
         <div>
@@ -81,4 +87,4 @@ const styles = {
   }
 };
 
-export default Radium(Profile);
+export default Radium(Stars);

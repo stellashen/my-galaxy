@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import Radium from "radium";
 import Navbar from "./navbar";
-import Profile from "./stars/profile";
+import Stars from "./stars/stars";
 
 class App extends React.Component {
   render() {
@@ -12,7 +12,7 @@ class App extends React.Component {
     return (
       <div id="app" style={styles.base}>
         <Route path="/" component={Navbar} />
-        <Route exact path="/" component={Profile} />
+        <Route exact path="/" component={Stars} />
       </div>
     );
   }
