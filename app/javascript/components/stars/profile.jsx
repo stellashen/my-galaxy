@@ -12,6 +12,7 @@ const GET_STARS = gql`
         first: 100
         orderBy: { field: STARRED_AT, direction: DESC }
       ) {
+        totalCount
         edges {
           cursor
           node {
@@ -61,8 +62,11 @@ const Profile = () => (
         </li>
       ));
 
+      const totalCount = viewer.starredRepositories.totalCount;
+
       return (
         <div>
+          <span>You have starred {totalCount} repositories.</span>
           <ul>{stars}</ul>
         </div>
       );

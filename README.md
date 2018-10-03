@@ -103,9 +103,11 @@ GraphQL query:
 ```
 {
   viewer {
-    name
+    login
     url
+    avatarUrl
     starredRepositories (first:100, orderBy: {field: STARRED_AT, direction: DESC}) {
+      totalCount
       edges {
         cursor
         node {

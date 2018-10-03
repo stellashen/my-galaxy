@@ -60,7 +60,7 @@ const styles = {
   },
   center: {
     textAlign: "center",
-    verticalAlign: "middle",
+    verticalAlign: "baseline",
     alignItems: "center",
     display: "flex"
   },
@@ -68,6 +68,7 @@ const styles = {
     width: "200px"
   },
   avatar: {
+    width: "50px",
     height: "50px",
     position: "absolute",
     top: "5px",

@@ -34,7 +34,8 @@ var styles = {
     fontSize: "28px"
   },
   image: {
-    width: "200px"
+    width: "200px",
+    display: "inline"
   }
 };
 export default Radium(Loading);
