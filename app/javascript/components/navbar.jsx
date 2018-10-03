@@ -2,50 +2,19 @@ import React from "react";
 import Radium from "radium";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import Loading from "./shared/loading";
 import ErrorMessage from "./shared/error_message";
 
 const GET_CURRENT_USER = gql`
   {
     viewer {
-      name
       login
       url
       avatarUrl
-      starredRepositories(
-        first: 100
-        orderBy: { field: STARRED_AT, direction: DESC }
-      ) {
-        edges {
-          cursor
-          node {
-            id
-            name
-            owner {
-              id
-              login
-            }
-            description
-            url
-            updatedAt
-            primaryLanguage {
-              id
-              name
-              color
-            }
-            stargazers {
-              totalCount
-            }
-            forkCount
-            viewerHasStarred
-          }
-        }
-      }
     }
   }
 `;
 
-const Profile = () => (
+const Navbar = () => (
   <Query query={GET_CURRENT_USER}>
     {({ data, loading, error }) => {
       if (error) {
@@ -55,14 +24,8 @@ const Profile = () => (
       const { viewer } = data;
 
       if (loading || !viewer) {
-        return <Loading />;
+        return null;
       }
-
-      const stars = viewer.starredRepositories.edges.map((star, idx) => (
-        <li key={`${star.cursor}`}>
-          {star.node.owner.login} / {star.node.name}
-        </li>
-      ));
 
       const starsPageUrl = `${viewer.url}?tabs=stars`;
 
@@ -80,7 +43,6 @@ const Profile = () => (
               Signed in as <p style={styles.strong}>{viewer.login}</p>
             </div>
           </div>
-          <div>{stars}</div>
         </div>
       );
     }}
@@ -122,4 +84,4 @@ const styles = {
   }
 };
 
-export default Radium(Profile);
+export default Radium(Navbar);

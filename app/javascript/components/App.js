@@ -1,7 +1,8 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import Radium from "radium";
-import Profile from "./profile";
+import Navbar from "./navbar";
+import Profile from "./stars/profile";
 
 class App extends React.Component {
   render() {
@@ -10,7 +11,8 @@ class App extends React.Component {
     if (!token) return null;
     return (
       <div id="app" style={styles.base}>
-        <Route path="/" component={Profile} />
+        <Route path="/" component={Navbar} />
+        <Route exact path="/" component={Profile} />
       </div>
     );
   }
