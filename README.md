@@ -23,7 +23,6 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 
 - [Rails 5](https://rubyonrails.org/): A server-side web application framework written in Ruby
 - [React](https://reactjs.org/): A JavaScript library for building user interfaces
-- [Relay](http://facebook.github.io/relay/en/): A JavaScript framework for building data-driven React applications powered by GraphQL
 - [GitHub GraphQL API](https://developer.github.com/v4/): This is an OAuth app calling GitHub's GraphQL API
 - [Apollo Client](https://www.apollographql.com/docs/react/): use GraphQL to build client applications
 - [Radium](https://formidable.com/open-source/radium/): Inline styling library
@@ -38,14 +37,16 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 
 - run query to get current user's starred repositories
 - display starred repositories
-- implement cursor-based pagination with Relay
-- add toggle view mode: expand or not
+- implement cursor-based pagination
 
 4. Unstar repositories
 
+- run mutation to unstar a starred repository
+
 5. Search for and star new repositories
 
-- implement infinite scroll pagination
+- search by keyword
+- run mutation to star a repository
 
 6. Jest tests
 
@@ -155,3 +156,7 @@ Muchmoji https://giphy.com/stickers/space-travel-39pqRFi5Gw0MpGug0w
 ## References
 
 [A complete React with Apollo and GraphQL Tutorial](https://www.robinwieruch.de/react-graphql-apollo-tutorial/)
+
+[Pagination | Apollo Client](https://www.apollographql.com/docs/react/features/pagination.html)
+
+[react-apollo-client-pagination-example](https://github.com/rwieruch/react-apollo-client-pagination-example)

@@ -9,14 +9,12 @@ const GET_STARS = gql`
   query Stars($afterCursor: String) {
     viewer {
       starredRepositories(
-        first: 50
+        first: 10
         after: $afterCursor
         orderBy: { field: STARRED_AT, direction: DESC }
       ) {
         totalCount
         pageInfo {
-          startCursor
-          hasPreviousPage
           endCursor
           hasNextPage
         }
@@ -50,19 +48,33 @@ const GET_STARS = gql`
   }
 `;
 
+const updateQuery = (previousResult, { fetchMoreResult }) => {
+  if (!fetchMoreResult) {
+    return previousResult;
+  }
+
+  return {
+    ...previousResult,
+    viewer: {
+      ...previousResult.viewer,
+      starredRepositories: {
+        ...previousResult.viewer.starredRepositories,
+        ...fetchMoreResult.viewer.starredRepositories,
+        edges: [
+          ...previousResult.viewer.starredRepositories.edges,
+          ...fetchMoreResult.viewer.starredRepositories.edges
+        ]
+      }
+    }
+  };
+};
+
 const Stars = () => (
-  <Query
-    query={GET_STARS}
-    variables={{
-      afterCursor: "Y3Vyc29yOnYyOpK5MjAxOC0wNS0wN1QyMjozNjoyMy0wNzowMM4HZ3lC"
-    }}
-  >
-    {({ data, loading, error }) => {
+  <Query query={GET_STARS}>
+    {({ data: { viewer }, loading, error, fetchMore }) => {
       if (error) {
         return <ErrorMessage error={error} />;
       }
-
-      const { viewer } = data;
 
       if (loading || !viewer) {
         return <Loading />;
@@ -83,6 +95,21 @@ const Stars = () => (
         <div>
           <span>You have starred {totalCount} repositories.</span>
           <ul>{stars}</ul>
+          {starredRepositories.pageInfo.hasNextPage && (
+            <button
+              type="button"
+              onClick={() =>
+                fetchMore({
+                  variables: {
+                    afterCursor: starredRepositories.pageInfo.endCursor
+                  },
+                  updateQuery
+                })
+              }
+            >
+              More
+            </button>
+          )}
         </div>
       );
     }}
