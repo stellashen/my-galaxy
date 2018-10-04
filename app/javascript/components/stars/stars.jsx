@@ -6,18 +6,22 @@ import Loading from "../shared/loading";
 import ErrorMessage from "../shared/error_message";
 
 const GET_STARS = gql`
-  {
+  query Stars($afterCursor: String) {
     viewer {
       starredRepositories(
-        first: 10
+        first: 50
+        after: $afterCursor
         orderBy: { field: STARRED_AT, direction: DESC }
       ) {
         totalCount
         pageInfo {
+          startCursor
+          hasPreviousPage
           endCursor
           hasNextPage
         }
         edges {
+          cursor
           starredAt
           node {
             id
@@ -47,7 +51,12 @@ const GET_STARS = gql`
 `;
 
 const Stars = () => (
-  <Query query={GET_STARS}>
+  <Query
+    query={GET_STARS}
+    variables={{
+      afterCursor: "Y3Vyc29yOnYyOpK5MjAxOC0wNS0wN1QyMjozNjoyMy0wNzowMM4HZ3lC"
+    }}
+  >
     {({ data, loading, error }) => {
       if (error) {
         return <ErrorMessage error={error} />;
@@ -64,7 +73,7 @@ const Stars = () => (
       const totalCount = starredRepositories.totalCount;
 
       const stars = starredRepositories.edges.map((star, idx) => (
-        <li key={`${star.cursor}`}>
+        <li key={`${idx}${star.cursor}`}>
           {star.node.owner.login} /{" "}
           <p style={styles.strong}>{star.node.name}</p>
         </li>

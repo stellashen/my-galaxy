@@ -7,7 +7,6 @@ import Stars from "./stars/stars";
 class App extends React.Component {
   render() {
     const token = this.props.token;
-    console.log(token);
     if (!token) return null;
     return (
       <div id="app" style={styles.base}>
