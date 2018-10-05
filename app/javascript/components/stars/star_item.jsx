@@ -25,6 +25,7 @@ class StarItem extends React.Component {
     const star = this.props.star;
     const language = star.node.primaryLanguage;
     if (!language) return null;
+    if (!star.node.viewerHasStarred) return null;
     return (
       <div style={styles.base}>
         <span style={styles.row}>
