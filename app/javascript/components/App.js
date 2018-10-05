@@ -61,8 +61,8 @@ class App extends React.Component {
         <Switch>
           <Route path="/explore" component={Explore} />
           <Route path="/" component={Stars} />
+          <Redirect from="*" to="/" />
         </Switch>
-        <Redirect from="*" to="/" />
       </div>
     );
   }

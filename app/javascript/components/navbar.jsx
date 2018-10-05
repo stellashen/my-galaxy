@@ -30,6 +30,8 @@ const Navbar = () => (
 
       const starsPageUrl = `${viewer.url}?tabs=stars`;
 
+      const currentUrl = window.location.href.split("/#/")[1];
+
       return (
         <div style={{ paddingBottom: "60px" }}>
           <div style={[styles.navbar, styles.center]}>
@@ -40,10 +42,21 @@ const Navbar = () => (
               />
             </Link>
             <Link to="/">
-              <h2>My Starred Repos</h2>
+              <h2 style={currentUrl === "" ? styles.highlight : {}}>
+                My Starred Repos
+              </h2>
             </Link>
             <Link to="/explore">
-              <h2>Explore</h2>
+              <h2
+                style={
+                  currentUrl === "explore" ||
+                  currentUrl.split("/")[0] === "explore"
+                    ? styles.highlight
+                    : {}
+                }
+              >
+                Explore
+              </h2>
             </Link>
             <a href={starsPageUrl} target="_blank">
               <img src={viewer.avatarUrl} style={styles.avatar} />
@@ -90,6 +103,9 @@ const styles = {
     position: "absolute",
     top: "10px",
     right: "100px"
+  },
+  highlight: {
+    background: "rgb(50, 50, 53)"
   }
 };
 
