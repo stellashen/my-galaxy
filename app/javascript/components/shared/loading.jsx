@@ -13,7 +13,7 @@ const Loading = () => (
     </div>
   </div>
 );
-var styles = {
+const styles = {
   base: {
     color: "#fff",
     background: "#000",

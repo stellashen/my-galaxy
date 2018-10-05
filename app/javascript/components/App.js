@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Radium from "radium";
+import Radium, { Style } from "radium";
 import Navbar from "./navbar";
 import Stars from "./stars/stars";
 
@@ -10,6 +10,19 @@ class App extends React.Component {
     if (!token) return null;
     return (
       <div id="app" style={styles.base}>
+        <Style
+          scopeSelector="#app"
+          rules={{
+            span: {
+              display: "block",
+              margin: "10px"
+            },
+            strong: {
+              fontWeight: "900",
+              display: "inline"
+            }
+          }}
+        />
         <Route path="/" component={Navbar} />
         <Route exact path="/" component={Stars} />
       </div>
@@ -17,7 +30,7 @@ class App extends React.Component {
   }
 }
 
-var styles = {
+const styles = {
   base: {
     color: "#000",
     background: "#fff",

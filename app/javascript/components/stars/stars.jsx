@@ -10,7 +10,7 @@ const GET_STARS = gql`
   query Stars($afterCursor: String) {
     viewer {
       starredRepositories(
-        first: 20
+        first: 50
         after: $afterCursor
         orderBy: { field: STARRED_AT, direction: DESC }
       ) {
@@ -88,8 +88,7 @@ const Stars = () => (
       return (
         <div style={styles.base}>
           <span style={styles.header}>
-            You have starred <p style={styles.strong}>{totalCount}</p>{" "}
-            repositories.
+            You have starred <strong>{totalCount}</strong> repositories.
           </span>
           <StarList stars={starredRepositories.edges} />
           {starredRepositories.pageInfo.hasNextPage && (
@@ -118,10 +117,6 @@ const styles = {
   },
   header: {
     fontSize: "16px"
-  },
-  strong: {
-    fontWeight: "900",
-    display: "inline"
   }
 };
 

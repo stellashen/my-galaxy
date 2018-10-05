@@ -40,7 +40,7 @@ const Navbar = () => (
               <img src={viewer.avatarUrl} style={styles.avatar} />
             </a>
             <div style={styles.name}>
-              Signed in as <p style={styles.strong}>{viewer.login}</p>
+              Signed in as <strong>{viewer.login}</strong>
             </div>
           </div>
         </div>
@@ -78,10 +78,6 @@ const styles = {
     position: "absolute",
     top: "10px",
     right: "100px"
-  },
-  strong: {
-    fontWeight: "900",
-    display: "inline"
   }
 };
 
