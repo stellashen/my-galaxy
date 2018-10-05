@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Radium from "radium";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
@@ -32,10 +33,12 @@ const Navbar = () => (
       return (
         <div>
           <div style={[styles.navbar, styles.center]}>
-            <img
-              src="https://res.cloudinary.com/devleg/image/upload/v1538468776/white_logo_transparent_background.png"
-              style={styles.logo}
-            />
+            <Link to="/">
+              <img
+                src="https://res.cloudinary.com/devleg/image/upload/v1538468776/white_logo_transparent_background.png"
+                style={styles.logo}
+              />
+            </Link>
             <a href={starsPageUrl} target="_blank">
               <img src={viewer.avatarUrl} style={styles.avatar} />
             </a>
@@ -56,7 +59,9 @@ const styles = {
     fontFamily: "Open Sans, sans-serif",
     height: "60px",
     width: "100%",
-    fontSize: "11px"
+    fontSize: "11px",
+    position: "fixed",
+    top: "0"
   },
   center: {
     textAlign: "center",
@@ -65,7 +70,8 @@ const styles = {
     display: "flex"
   },
   logo: {
-    width: "200px"
+    width: "200px",
+    padding: "0 16px"
   },
   avatar: {
     width: "50px",

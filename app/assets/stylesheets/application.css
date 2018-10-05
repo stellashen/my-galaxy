@@ -154,6 +154,6 @@ body {
 }
 
 .logo {
-  width: 500px;
-  display: inline;
+  display: inline-block;
+  width: 45%;
 }
