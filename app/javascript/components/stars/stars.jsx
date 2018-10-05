@@ -93,7 +93,8 @@ const Stars = () => (
           </span>
           <StarList stars={starredRepositories.edges} />
           {starredRepositories.pageInfo.hasNextPage && (
-            <div
+            <Button
+              kind="primary"
               onClick={() =>
                 fetchMore({
                   variables: {
@@ -103,8 +104,8 @@ const Stars = () => (
                 })
               }
             >
-              <Button kind="primary">Load More</Button>
-            </div>
+              Load More
+            </Button>
           )}
         </div>
       );

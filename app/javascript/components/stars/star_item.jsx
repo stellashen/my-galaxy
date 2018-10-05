@@ -28,9 +28,18 @@ class StarItem extends React.Component {
     return (
       <div style={styles.base}>
         <span style={styles.row}>
-          <Button kind="primary">
-            <FontAwesomeIcon icon="star" style={styles.starred} /> Unstar
-          </Button>
+          <Mutation
+            mutation={UNSTAR_REPOSITORY}
+            variables={{ id: star.node.id }}
+          >
+            {removeStar => (
+              <div onClick={removeStar}>
+                <Button kind="primary">
+                  <FontAwesomeIcon icon="star" style={styles.starred} /> Unstar
+                </Button>
+              </div>
+            )}
+          </Mutation>
           <a href={star.node.url} target="_blank">
             <h1 style={styles.h1}>
               {star.node.owner.login} / <strong>{star.node.name}</strong>

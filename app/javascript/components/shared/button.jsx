@@ -10,7 +10,10 @@ class Button extends React.Component {
     // all just JavaScript, you can use whatever logic you want to decide which
     // styles are applied (props, state, context, etc).
     return (
-      <button style={[styles.base, styles[this.props.kind]]}>
+      <button
+        style={[styles.base, styles[this.props.kind]]}
+        onClick={this.props.onClick}
+      >
         {this.props.children}
       </button>
     );
