@@ -1,8 +1,9 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Radium, { Style } from "radium";
 import Navbar from "./navbar";
 import Stars from "./stars/stars";
+import Explore from "./explore/explore";
 
 class App extends React.Component {
   render() {
@@ -21,15 +22,32 @@ class App extends React.Component {
               fontWeight: "900",
               display: "inline"
             },
+            "a:hover": {
+              cursor: "pointer"
+            },
             i: {
               marginRight: "5px"
             },
             h1: {
               padding: "6px 12px",
-              color: "#1E6ED6",
-              ":hover": {
-                textDecoration: "underline"
-              }
+              color: "#1E6ED6"
+            },
+            "h1:hover": {
+              textDecoration: "underline"
+            },
+            h2: {
+              fontSize: "14px",
+              lineHeight: "60px",
+              padding: "0 20px"
+            },
+            "h2:hover": {
+              background: "#404044"
+            },
+            h5: {
+              display: "inline"
+            },
+            "h5:hover": {
+              textDecoration: "underline"
             },
             small: {
               display: "block",
@@ -40,7 +58,10 @@ class App extends React.Component {
           }}
         />
         <Route path="/" component={Navbar} />
-        <Route exact path="/" component={Stars} />
+        <Switch>
+          <Route path="/explore" component={Explore} />
+          <Route path="/" component={Stars} />
+        </Switch>
       </div>
     );
   }

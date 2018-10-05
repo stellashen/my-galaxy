@@ -31,13 +31,19 @@ const Navbar = () => (
       const starsPageUrl = `${viewer.url}?tabs=stars`;
 
       return (
-        <div>
+        <div style={{ paddingBottom: "60px" }}>
           <div style={[styles.navbar, styles.center]}>
             <Link to="/">
               <img
                 src="https://res.cloudinary.com/devleg/image/upload/v1538468776/white_logo_transparent_background.png"
                 style={styles.logo}
               />
+            </Link>
+            <Link to="/">
+              <h2>My Starred Repos</h2>
+            </Link>
+            <Link to="/explore">
+              <h2>Explore</h2>
             </Link>
             <a href={starsPageUrl} target="_blank">
               <img src={viewer.avatarUrl} style={styles.avatar} />

@@ -32,17 +32,11 @@ class StarItem extends React.Component {
         </small>
         <small>
           To unstar this repository, please go to{" "}
-          <a
-            href={star.node.url}
-            target="_blank"
-            style={{
-              ":hover": {
-                textDecoration: "underline"
-              }
-            }}
-          >
-            {star.node.url}
-          </a>
+          <h5>
+            <a href={star.node.url} target="_blank">
+              {star.node.url}
+            </a>
+          </h5>
         </small>
       </div>
     );
