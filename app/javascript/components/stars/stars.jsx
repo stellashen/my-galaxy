@@ -4,12 +4,13 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import Loading from "../shared/loading";
 import ErrorMessage from "../shared/error_message";
+import StarList from "./star_list";
 
 const GET_STARS = gql`
   query Stars($afterCursor: String) {
     viewer {
       starredRepositories(
-        first: 10
+        first: 20
         after: $afterCursor
         orderBy: { field: STARRED_AT, direction: DESC }
       ) {
@@ -84,20 +85,15 @@ const Stars = () => (
 
       const totalCount = starredRepositories.totalCount;
 
-      const stars = starredRepositories.edges.map((star, idx) => (
-        <li key={`${idx}${star.cursor}`}>
-          {star.node.owner.login} /{" "}
-          <p style={styles.strong}>{star.node.name}</p>
-        </li>
-      ));
-
       return (
-        <div>
-          <span>You have starred {totalCount} repositories.</span>
-          <ul>{stars}</ul>
+        <div style={styles.base}>
+          <span style={styles.header}>
+            You have starred <p style={styles.strong}>{totalCount}</p>{" "}
+            repositories.
+          </span>
+          <StarList stars={starredRepositories.edges} />
           {starredRepositories.pageInfo.hasNextPage && (
             <button
-              type="button"
               onClick={() =>
                 fetchMore({
                   variables: {
@@ -117,6 +113,12 @@ const Stars = () => (
 );
 
 const styles = {
+  base: {
+    padding: "20px"
+  },
+  header: {
+    fontSize: "16px"
+  },
   strong: {
     fontWeight: "900",
     display: "inline"
