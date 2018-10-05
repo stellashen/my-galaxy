@@ -16,7 +16,7 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 - [MVP List](#mvp-list)
 - [Technical Details](#technical-details)
   - [1 GitHub OAuth](#1-GitHub-OAuth)
-  - [2 Get User Data](#2-get-user-data)
+  - [2 GraphQL query and mutation](#2-GraphQL-query-and-mutation)
 - [Images Source](#Images-Source)
 
 ## Technologies
@@ -105,46 +105,68 @@ In terminal, run:
 heroku config:add GITHUB_CLIENT_ID='replace with production app id' GITHUB_CLIENT_SECRET='production app secret'
 ```
 
-### 2 Get User Data
+### 2 GraphQL query and mutation
 
-GraphQL query:
+Query for getting starred repositories:
 
 ```
-{
-  viewer {
-    login
-    url
-    avatarUrl
-    starredRepositories (first:100, orderBy: {field: STARRED_AT, direction: DESC}) {
-      totalCount
-      edges {
-        cursor
-        starredAt
-        node {
-          id
-          name
-          owner {
-            id
-            login
-          }
-          description
-          url
-          updatedAt
-          primaryLanguage {
+const GET_STARS = gql`
+  query Stars($afterCursor: String) {
+    viewer {
+      starredRepositories(
+        first: 50
+        after: $afterCursor
+        orderBy: { field: STARRED_AT, direction: DESC }
+      ) {
+        totalCount
+        pageInfo {
+          endCursor
+          hasNextPage
+        }
+        edges {
+          cursor
+          starredAt
+          node {
             id
             name
-            color
+            owner {
+              id
+              login
+            }
+            description
+            url
+            updatedAt
+            primaryLanguage {
+              id
+              name
+              color
+            }
+            stargazers {
+              totalCount
+            }
+            forkCount
+            viewerHasStarred
           }
-          stargazers {
-            totalCount
-          }
-          forkCount
-          viewerHasStarred
         }
       }
     }
   }
-}
+`;
+```
+
+Mutation for unstarring a starred repository:
+
+```
+const UNSTAR_REPOSITORY = gql`
+  mutation($id: ID!) {
+    removeStar(input: { starrableId: $id }) {
+      starrable {
+        id
+        viewerHasStarred
+      }
+    }
+  }
+`;
 ```
 
 ## Images Source
