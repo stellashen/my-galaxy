@@ -3,6 +3,19 @@ import Radium from "radium";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import solids from "@fortawesome/fontawesome-free-solid";
 import Button from "../shared/button";
+import gql from "graphql-tag";
+import { Mutation } from "react-apollo";
+
+const UNSTAR_REPOSITORY = gql`
+  mutation($id: ID!) {
+    removeStar(input: { starrableId: $id }) {
+      starrable {
+        id
+        viewerHasStarred
+      }
+    }
+  }
+`;
 
 class StarItem extends React.Component {
   constructor(props) {
