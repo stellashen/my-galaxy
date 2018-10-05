@@ -1,7 +1,5 @@
 import React from "react";
 import Radium from "radium";
-import FontAwesomeIcon from "@fortawesome/react-fontawesome";
-import solids from "@fortawesome/fontawesome-free-solid";
 import Button from "../shared/button";
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
@@ -36,7 +34,8 @@ class StarItem extends React.Component {
             {removeStar => (
               <div onClick={removeStar}>
                 <Button kind="primary">
-                  <FontAwesomeIcon icon="star" style={styles.starred} /> Unstar
+                  <i className="fas fa-star" style={styles.starred} />
+                  Unstar
                 </Button>
               </div>
             )}

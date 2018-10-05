@@ -26,9 +26,9 @@ const styles = {
   base: {
     color: "#000",
     cursor: "pointer",
-    verticalAlign: "middle",
     fontWeight: "600",
     fontFamily: "Play, sans-serif",
+    verticalAlign: "baseline",
     // Adding interactive state couldn't be easier! Add a special key to your
     // style object (:hover, :focus, :active, or @media) with the additional rules.
     ":hover": {

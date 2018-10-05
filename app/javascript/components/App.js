@@ -20,6 +20,9 @@ class App extends React.Component {
             strong: {
               fontWeight: "900",
               display: "inline"
+            },
+            i: {
+              marginRight: "5px"
             }
           }}
         />
