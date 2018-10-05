@@ -3,6 +3,7 @@ import Radium from "radium";
 import Button from "../shared/button";
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
+import { isTerminating } from "apollo-link/lib/linkUtils";
 
 const UNSTAR_REPOSITORY = gql`
   mutation($id: ID!) {
@@ -19,6 +20,34 @@ class StarItem extends React.Component {
   constructor(props) {
     super(props);
   }
+
+  renderReminder(star) {
+    return (
+      <div>
+        <small>
+          Sorry, you can't unstar it here, because the '
+          <strong>{star.node.owner.login}</strong>' organization has enabled
+          OAuth App access restrictions, meaning that data access to
+          third-parties is limited.
+        </small>
+        <small>
+          To unstar this repository, please go to{" "}
+          <a
+            href={star.node.url}
+            target="_blank"
+            style={{
+              ":hover": {
+                textDecoration: "underline"
+              }
+            }}
+          >
+            {star.node.url}
+          </a>
+        </small>
+      </div>
+    );
+  }
+
   render() {
     const star = this.props.star;
     const language = star.node.primaryLanguage;
@@ -26,26 +55,33 @@ class StarItem extends React.Component {
     if (!star.node.viewerHasStarred) return null;
     return (
       <div style={styles.base}>
-        <span style={styles.row}>
-          <Mutation
-            mutation={UNSTAR_REPOSITORY}
-            variables={{ id: star.node.id }}
-          >
-            {removeStar => (
-              <div onClick={removeStar}>
-                <Button kind="primary">
-                  <i className="fas fa-star" style={styles.starred} />
-                  Unstar
-                </Button>
+        <Mutation mutation={UNSTAR_REPOSITORY} variables={{ id: star.node.id }}>
+          {(removeStar, { error }) => {
+            let reminder;
+            if (error) {
+              reminder = true;
+            }
+            return (
+              <div>
+                {reminder ? this.renderReminder(star) : ""}
+                <span style={styles.row}>
+                  <div onClick={removeStar}>
+                    <Button kind="primary">
+                      <i className="fas fa-star" style={styles.starred} />
+                      Unstar
+                    </Button>
+                  </div>
+                  <a href={star.node.url} target="_blank">
+                    <h1>
+                      {star.node.owner.login} /{" "}
+                      <strong>{star.node.name}</strong>
+                    </h1>
+                  </a>
+                </span>
               </div>
-            )}
-          </Mutation>
-          <a href={star.node.url} target="_blank">
-            <h1 style={styles.h1}>
-              {star.node.owner.login} / <strong>{star.node.name}</strong>
-            </h1>
-          </a>
-        </span>
+            );
+          }}
+        </Mutation>
         <span>Starred on {star.starredAt.split("T")[0]}</span>
         <span>{star.node.description}</span>
         <span>
@@ -65,13 +101,6 @@ const styles = {
     borderRadius: "3px",
     padding: "16px",
     marginBottom: "10px"
-  },
-  h1: {
-    padding: "6px 12px",
-    color: "#1E6ED6",
-    ":hover": {
-      textDecoration: "underline"
-    }
   },
   row: {
     display: "flex",

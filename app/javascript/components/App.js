@@ -23,6 +23,19 @@ class App extends React.Component {
             },
             i: {
               marginRight: "5px"
+            },
+            h1: {
+              padding: "6px 12px",
+              color: "#1E6ED6",
+              ":hover": {
+                textDecoration: "underline"
+              }
+            },
+            small: {
+              display: "block",
+              color: "red",
+              fontSize: "12px",
+              padding: "5px 20px"
             }
           }}
         />
