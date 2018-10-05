@@ -5,6 +5,7 @@ import { Query } from "react-apollo";
 import Loading from "../shared/loading";
 import ErrorMessage from "../shared/error_message";
 import StarList from "./star_list";
+import Button from "../shared/button";
 
 const GET_STARS = gql`
   query Stars($afterCursor: String) {
@@ -92,7 +93,7 @@ const Stars = () => (
           </span>
           <StarList stars={starredRepositories.edges} />
           {starredRepositories.pageInfo.hasNextPage && (
-            <button
+            <div
               onClick={() =>
                 fetchMore({
                   variables: {
@@ -102,8 +103,8 @@ const Stars = () => (
                 })
               }
             >
-              More
-            </button>
+              <Button kind="primary">Load More</Button>
+            </div>
           )}
         </div>
       );

@@ -2,6 +2,7 @@ import React from "react";
 import Radium from "radium";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import solids from "@fortawesome/fontawesome-free-solid";
+import Button from "../shared/button";
 
 class StarItem extends React.Component {
   constructor(props) {
@@ -14,9 +15,9 @@ class StarItem extends React.Component {
     return (
       <div style={styles.base}>
         <span style={styles.row}>
-          <button>
+          <Button kind="primary">
             <FontAwesomeIcon icon="star" style={styles.starred} /> Unstar
-          </button>
+          </Button>
           <a href={star.node.url} target="_blank">
             <h1 style={styles.h1}>
               {star.node.owner.login} / <strong>{star.node.name}</strong>
@@ -44,14 +45,15 @@ const styles = {
     marginBottom: "10px"
   },
   h1: {
-    padding: "0 20px",
+    padding: "6px 12px",
     color: "#1E6ED6",
     ":hover": {
       textDecoration: "underline"
     }
   },
   row: {
-    display: "flex"
+    display: "flex",
+    alignItems: "baseline"
   },
   circle: {
     position: "relative",
