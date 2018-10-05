@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import Radium, { Style } from "radium";
 import Navbar from "./navbar";
 import Stars from "./stars/stars";
@@ -62,6 +62,7 @@ class App extends React.Component {
           <Route path="/explore" component={Explore} />
           <Route path="/" component={Stars} />
         </Switch>
+        <Redirect from="*" to="/" />
       </div>
     );
   }
