@@ -81,11 +81,21 @@ class StarItem extends React.Component {
         </Mutation>
         <span>Starred on {star.starredAt.split("T")[0]}</span>
         <span>{star.node.description}</span>
-        <span>
-          <div
-            style={[styles.circle, { backgroundColor: `${language.color}` }]}
-          />
-          {language.name}
+        <span style={[styles.row, styles.small]}>
+          <div>
+            <div
+              style={[styles.circle, { backgroundColor: `${language.color}` }]}
+            />
+            {language.name}
+          </div>
+          <div style={styles.margin}>
+            <i className="fas fa-star" />
+            {star.node.stargazers.totalCount}
+          </div>
+          <div>
+            <i className="fas fa-code-branch" />
+            {star.node.forkCount}
+          </div>
         </span>
         <Topics>{topics}</Topics>
       </div>
@@ -102,7 +112,8 @@ const styles = {
   },
   row: {
     display: "flex",
-    alignItems: "baseline"
+    alignItems: "baseline",
+    textAlign: "middle"
   },
   circle: {
     position: "relative",
@@ -115,6 +126,12 @@ const styles = {
   },
   starred: {
     color: "#FECD34"
+  },
+  margin: {
+    margin: "0 10px"
+  },
+  small: {
+    fontSize: "12px"
   }
 };
 

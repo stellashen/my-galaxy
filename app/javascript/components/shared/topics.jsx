@@ -5,13 +5,13 @@ import Topic from "./topic";
 class Topics extends React.Component {
   render() {
     return (
-      <span style={styles.base}>
+      <div style={styles.base}>
         {this.props.children.map((topic, idx) => (
           <div key={idx} style={styles.container}>
             <Topic>{topic}</Topic>
           </div>
         ))}
-      </span>
+      </div>
     );
   }
 }
