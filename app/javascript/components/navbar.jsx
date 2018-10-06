@@ -78,9 +78,13 @@ const styles = {
     fontFamily: "Open Sans, sans-serif",
     height: "60px",
     width: "100%",
+    minWidth: "500px",
     fontSize: "11px",
     position: "fixed",
-    top: "0"
+    top: "0",
+    "@media (max-width: 500px)": {
+      position: "absolute"
+    }
   },
   center: {
     textAlign: "center",
@@ -97,12 +101,18 @@ const styles = {
     height: "50px",
     position: "absolute",
     top: "5px",
-    right: "20px"
+    right: "20px",
+    "@media (max-width: 680px)": {
+      display: "none"
+    }
   },
   name: {
     position: "absolute",
     top: "10px",
-    right: "100px"
+    right: "100px",
+    "@media (max-width: 680px)": {
+      display: "none"
+    }
   },
   highlight: {
     background: "rgb(50, 50, 53)"
