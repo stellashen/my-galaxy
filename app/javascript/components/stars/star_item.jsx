@@ -1,9 +1,9 @@
 import React from "react";
 import Radium from "radium";
-import Button from "../shared/button";
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
-import { isTerminating } from "apollo-link/lib/linkUtils";
+import Button from "../shared/button";
+import Topics from "../shared/topics";
 
 const UNSTAR_REPOSITORY = gql`
   mutation($id: ID!) {
@@ -47,6 +47,9 @@ class StarItem extends React.Component {
     const language = star.node.primaryLanguage;
     if (!language) return null;
     if (!star.node.viewerHasStarred) return null;
+    const topics = star.node.repositoryTopics.edges.map(
+      topicNode => topicNode.node.topic.name
+    );
     return (
       <div style={styles.base}>
         <Mutation mutation={UNSTAR_REPOSITORY} variables={{ id: star.node.id }}>
@@ -84,6 +87,7 @@ class StarItem extends React.Component {
           />
           {language.name}
         </span>
+        <Topics>{topics}</Topics>
       </div>
     );
   }
