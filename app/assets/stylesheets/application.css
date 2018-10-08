@@ -161,3 +161,12 @@ body {
     border: 1px solid black;
   }
 }
+
+@media screen and (max-width: 500px) {
+  .logout-button {
+    position: relative;
+    display: block;
+    margin-left: 60px;
+    margin-bottom: 20px;
+  }
+}

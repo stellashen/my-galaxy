@@ -95,9 +95,7 @@ class Explore extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    // run query with this.state
-    console.log(this.state.keyword);
-    this.emptyInput("title");
+    this.emptyInput("keyword");
   }
 
   handleKeyPress(e) {
@@ -110,12 +108,14 @@ class Explore extends React.Component {
     return (
       <div style={styles.base}>
         <span style={[styles.header, styles.searchbar]}>
+          <i className="fas fa-search" style={styles.searchicon} />
           <input
             type="text"
             value={this.state.keyword}
             onChange={this.update("keyword")}
             placeholder="Search Repo"
             onKeyPress={this.handleKeyPress}
+            style={styles.searchinput}
           />
         </span>
 
@@ -172,8 +172,15 @@ const styles = {
   },
   searchbar: {
     border: "1px solid rgba(27,31,35,0.2)",
-    padding: "5px",
+    padding: "5px 8px",
     marginBottom: "20px"
+  },
+  searchicon: {
+    marginRight: "10px",
+    color: "rgb(99, 94, 94)"
+  },
+  searchinput: {
+    width: "calc(100% - 36px)"
   }
 };
 
