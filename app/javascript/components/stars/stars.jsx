@@ -30,7 +30,7 @@ const GET_STARS = gql`
               id
               login
             }
-            description
+            descriptionHTML
             url
             updatedAt
             primaryLanguage {

@@ -43,6 +43,12 @@ class StarItem extends React.Component {
     );
   }
 
+  rawMarkup(star) {
+    const rawMarkup = star.node.descriptionHTML;
+    console.log(typeof star.node.descriptionHTML);
+    return { __html: rawMarkup };
+  }
+
   render() {
     const star = this.props.star;
     const language = star.node.primaryLanguage;
@@ -83,7 +89,7 @@ class StarItem extends React.Component {
         <span style={styles.small}>
           Starred {timeago().format(star.starredAt)}
         </span>
-        <span>{star.node.description}</span>
+        <span dangerouslySetInnerHTML={this.rawMarkup(star)} />
         <span style={[styles.row, styles.small]}>
           <div>
             <div

@@ -8,16 +8,42 @@ const SEARCH_REPOS = gql`
   query Search($keyword: String) {
     search(query: $keyword, type: REPOSITORY, first: 50) {
       repositoryCount
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
       edges {
+        cursor
+        starredAt
         node {
-          ... on Repository {
+          id
+          name
+          owner {
+            id
+            login
+          }
+          descriptionHTML
+          url
+          updatedAt
+          primaryLanguage {
+            id
             name
-            descriptionHTML
-            stargazers {
-              totalCount
+            color
+          }
+          stargazers {
+            totalCount
+          }
+          forkCount
+          viewerHasStarred
+          repositoryTopics(first: 20) {
+            edges {
+              node {
+                topic {
+                  id
+                  name
+                }
+              }
             }
-            forkCount
-            updatedAt
           }
         }
       }

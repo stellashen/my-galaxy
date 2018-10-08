@@ -20,7 +20,8 @@ const styles = {
   base: {
     fontFamily: "Play, sans-serif",
     display: "flex",
-    flexFlow: "wrap"
+    flexFlow: "wrap",
+    fontSize: "12px"
   },
   container: {
     marginRight: "5px"
