@@ -2,6 +2,7 @@ import React from "react";
 import Radium from "radium";
 import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
+import timeago from "timeago.js";
 import Button from "../shared/button";
 import Topics from "../shared/topics";
 
@@ -79,7 +80,9 @@ class StarItem extends React.Component {
             );
           }}
         </Mutation>
-        <span>Starred on {star.starredAt.split("T")[0]}</span>
+        <span style={styles.small}>
+          Starred {timeago().format(star.starredAt)}
+        </span>
         <span>{star.node.description}</span>
         <span style={[styles.row, styles.small]}>
           <div>
@@ -95,6 +98,9 @@ class StarItem extends React.Component {
           <div>
             <i className="fas fa-code-branch" />
             {star.node.forkCount}
+          </div>
+          <div style={styles.margin}>
+            Updated {timeago().format(star.node.updatedAt)}
           </div>
         </span>
         <Topics>{topics}</Topics>

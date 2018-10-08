@@ -193,3 +193,5 @@ Muchmoji https://giphy.com/stickers/space-travel-39pqRFi5Gw0MpGug0w
 [Pagination | Apollo Client](https://www.apollographql.com/docs/react/features/pagination.html)
 
 [react-apollo-client-pagination-example](https://github.com/rwieruch/react-apollo-client-pagination-example)
+
+[How to search with Github GraphQL](https://medium.com/@katopz/how-to-search-with-github-graphql-e6c142dc61ed)
