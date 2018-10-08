@@ -6,9 +6,20 @@ import timeago from "timeago.js";
 import Button from "../shared/button";
 import Topics from "../shared/topics";
 
-const UNSTAR_REPOSITORY = gql`
+const REMOVE_STAR = gql`
   mutation($id: ID!) {
     removeStar(input: { starrableId: $id }) {
+      starrable {
+        id
+        viewerHasStarred
+      }
+    }
+  }
+`;
+
+const ADD_STAR = gql`
+  mutation($id: ID!) {
+    addStar(input: { starrableId: $id }) {
       starrable {
         id
         viewerHasStarred
@@ -22,17 +33,17 @@ class StarItem extends React.Component {
     super(props);
   }
 
-  renderReminder(star) {
+  renderReminder(starred, star) {
     return (
       <div>
         <small>
-          Sorry, you can't unstar it here, because the '
+          Sorry, you can't {starred ? "unstar" : "star"} it here, because the '
           <strong>{star.node.owner.login}</strong>' organization has enabled
           OAuth App access restrictions, meaning that data access to
           third-parties is limited.
         </small>
         <small>
-          To unstar this repository, please go to{" "}
+          To {starred ? "unstar" : "star"} this repository, please go to{" "}
           <h5>
             <a href={star.node.url} target="_blank">
               {star.node.url}
@@ -48,19 +59,10 @@ class StarItem extends React.Component {
     return { __html: rawMarkup };
   }
 
-  render() {
-    const star = this.props.star;
-    const page = this.props.page;
-    const language = star.node.primaryLanguage;
-    const starred = star.node.viewerHasStarred;
-    if (!language) return null;
-    if (page === "stars" && !star.node.viewerHasStarred) return null;
-    const topics = star.node.repositoryTopics.edges.map(
-      topicNode => topicNode.node.topic.name
-    );
-    return (
-      <div style={styles.base}>
-        <Mutation mutation={UNSTAR_REPOSITORY} variables={{ id: star.node.id }}>
+  renderMutation(starred, star) {
+    if (starred) {
+      return (
+        <Mutation mutation={REMOVE_STAR} variables={{ id: star.node.id }}>
           {(removeStar, { error }) => {
             let reminder;
             if (error) {
@@ -68,15 +70,12 @@ class StarItem extends React.Component {
             }
             return (
               <div>
-                {reminder ? this.renderReminder(star) : ""}
+                {reminder ? this.renderReminder(starred, star) : ""}
                 <span style={styles.row}>
                   <div onClick={removeStar}>
                     <Button kind="primary">
-                      <i
-                        className={starred ? "fas fa-star" : "far fa-star"}
-                        style={starred ? styles.starred : styles.unstar}
-                      />
-                      {starred ? "Unstar" : "Star"}
+                      <i className="fas fa-star" style={styles.starred} />
+                      Unstar
                     </Button>
                   </div>
                   <a href={star.node.url} target="_blank">
@@ -90,6 +89,53 @@ class StarItem extends React.Component {
             );
           }}
         </Mutation>
+      );
+    } else {
+      return (
+        <Mutation mutation={ADD_STAR} variables={{ id: star.node.id }}>
+          {(addStar, { error }) => {
+            let reminder;
+            if (error) {
+              reminder = true;
+            }
+            return (
+              <div>
+                {reminder ? this.renderReminder(starred, star) : ""}
+                <span style={styles.row}>
+                  <div onClick={addStar}>
+                    <Button kind="primary">
+                      <i className="far fa-star" style={styles.unstar} />
+                      Star
+                    </Button>
+                  </div>
+                  <a href={star.node.url} target="_blank">
+                    <h1>
+                      {star.node.owner.login} /{" "}
+                      <strong>{star.node.name}</strong>
+                    </h1>
+                  </a>
+                </span>
+              </div>
+            );
+          }}
+        </Mutation>
+      );
+    }
+  }
+
+  render() {
+    const star = this.props.star;
+    const page = this.props.page;
+    const language = star.node.primaryLanguage;
+    const starred = star.node.viewerHasStarred;
+    if (!language) return null;
+    if (page === "stars" && !star.node.viewerHasStarred) return null;
+    const topics = star.node.repositoryTopics.edges.map(
+      topicNode => topicNode.node.topic.name
+    );
+    return (
+      <div style={styles.base}>
+        {this.renderMutation(starred, star)}
         <span dangerouslySetInnerHTML={this.rawMarkup(star)} />
         <span style={[styles.row, styles.small]}>
           <div>
