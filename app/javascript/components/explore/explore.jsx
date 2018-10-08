@@ -6,7 +6,6 @@ import Loading from "../shared/loading";
 import ErrorMessage from "../shared/error_message";
 import StarList from "../stars/star_list";
 import Button from "../shared/button";
-import Searchbar from "./searchbar";
 
 const SEARCH_REPOS = gql`
   query Search($keyword: String!) {
@@ -110,13 +109,15 @@ class Explore extends React.Component {
   render() {
     return (
       <div style={styles.base}>
-        <input
-          type="text"
-          value={this.state.keyword}
-          onChange={this.update("keyword")}
-          placeholder="Search Repo"
-          onKeyPress={this.handleKeyPress}
-        />
+        <span style={[styles.header, styles.searchbar]}>
+          <input
+            type="text"
+            value={this.state.keyword}
+            onChange={this.update("keyword")}
+            placeholder="Search Repo"
+            onKeyPress={this.handleKeyPress}
+          />
+        </span>
 
         <Query query={SEARCH_REPOS} variables={{ keyword: this.state.keyword }}>
           {({ data: { search }, loading, error, fetchMore }) => {
@@ -168,6 +169,11 @@ const styles = {
   },
   header: {
     fontSize: "16px"
+  },
+  searchbar: {
+    border: "1px solid rgba(27,31,35,0.2)",
+    padding: "5px",
+    marginBottom: "20px"
   }
 };
 
