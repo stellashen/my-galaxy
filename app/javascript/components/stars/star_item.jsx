@@ -52,6 +52,7 @@ class StarItem extends React.Component {
     const star = this.props.star;
     const page = this.props.page;
     const language = star.node.primaryLanguage;
+    const starred = star.node.viewerHasStarred;
     if (!language) return null;
     if (page === "stars" && !star.node.viewerHasStarred) return null;
     const topics = star.node.repositoryTopics.edges.map(
@@ -71,8 +72,11 @@ class StarItem extends React.Component {
                 <span style={styles.row}>
                   <div onClick={removeStar}>
                     <Button kind="primary">
-                      <i className="fas fa-star" style={styles.starred} />
-                      Unstar
+                      <i
+                        className={starred ? "fas fa-star" : "far fa-star"}
+                        style={starred ? styles.starred : styles.unstar}
+                      />
+                      {starred ? "Unstar" : "Star"}
                     </Button>
                   </div>
                   <a href={star.node.url} target="_blank">
@@ -135,6 +139,9 @@ const styles = {
   },
   starred: {
     color: "#FECD34"
+  },
+  unstar: {
+    color: "rgb(134, 128, 128)"
   },
   margin: {
     margin: "0 10px"
