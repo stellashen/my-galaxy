@@ -45,7 +45,6 @@ class StarItem extends React.Component {
 
   rawMarkup(star) {
     const rawMarkup = star.node.descriptionHTML;
-    console.log(typeof star.node.descriptionHTML);
     return { __html: rawMarkup };
   }
 
@@ -86,9 +85,6 @@ class StarItem extends React.Component {
             );
           }}
         </Mutation>
-        <span style={styles.small}>
-          Starred {timeago().format(star.starredAt)}
-        </span>
         <span dangerouslySetInnerHTML={this.rawMarkup(star)} />
         <span style={[styles.row, styles.small]}>
           <div>
