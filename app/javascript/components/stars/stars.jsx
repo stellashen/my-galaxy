@@ -101,7 +101,7 @@ const Stars = () => (
           <span style={styles.header}>
             You have starred <strong>{totalCount}</strong> repositories.
           </span>
-          <StarList stars={starredRepositories.edges} />
+          <StarList stars={starredRepositories.edges} page="stars" />
           {starredRepositories.pageInfo.hasNextPage && (
             <Button
               kind="primary"

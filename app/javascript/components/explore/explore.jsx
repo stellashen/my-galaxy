@@ -62,8 +62,10 @@ const updateQuery = (previousResult, { fetchMoreResult }) => {
   }
 
   return {
-    ...previousResult,
-    edges: [...previousResult.edges, ...fetchMoreResult.edges]
+    search: {
+      ...previousResult.search,
+      edges: [...previousResult.search.edges, ...fetchMoreResult.search.edges]
+    }
   };
 };
 
@@ -135,14 +137,14 @@ class Explore extends React.Component {
                 <span style={styles.header}>
                   Result: <strong>{totalCount}</strong> repositories.
                 </span>
-                <StarList stars={repos} />
+                <StarList stars={repos} page="search" />
                 {search.pageInfo.hasNextPage && (
                   <Button
                     kind="primary"
                     onClick={() =>
                       fetchMore({
                         variables: {
-                          afterCursor: repos.pageInfo.endCursor
+                          afterCursor: search.pageInfo.endCursor
                         },
                         updateQuery
                       })

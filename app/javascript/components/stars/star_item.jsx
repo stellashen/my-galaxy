@@ -50,9 +50,10 @@ class StarItem extends React.Component {
 
   render() {
     const star = this.props.star;
+    const page = this.props.page;
     const language = star.node.primaryLanguage;
     if (!language) return null;
-    if (!star.node.viewerHasStarred) return null;
+    if (page === "stars" && !star.node.viewerHasStarred) return null;
     const topics = star.node.repositoryTopics.edges.map(
       topicNode => topicNode.node.topic.name
     );
