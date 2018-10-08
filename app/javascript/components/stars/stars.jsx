@@ -82,7 +82,7 @@ const updateQuery = (previousResult, { fetchMoreResult }) => {
 };
 
 const Stars = () => (
-  <Query query={GET_STARS}>
+  <Query query={GET_STARS} fetchPolicy="network-only">
     {({ data: { viewer }, loading, error, fetchMore }) => {
       if (error) {
         return <ErrorMessage error={error} />;
