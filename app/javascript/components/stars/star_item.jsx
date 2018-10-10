@@ -123,6 +123,14 @@ class StarItem extends React.Component {
     }
   }
 
+  handleOpenDetail() {
+    const repoInfo = {
+      repoOwner: this.props.star.node.owner.login,
+      repoName: this.props.star.node.name
+    };
+    this.props.receiveRepo(repoInfo);
+  }
+
   render() {
     const star = this.props.star;
     const page = this.props.page;
@@ -134,7 +142,7 @@ class StarItem extends React.Component {
       topicNode => topicNode.node.topic.name
     );
     return (
-      <div style={styles.base}>
+      <div style={styles.base} onClick={() => this.handleOpenDetail()}>
         {this.renderMutation(starred, star)}
         <span dangerouslySetInnerHTML={this.rawMarkup(star)} />
         <span style={[styles.row, styles.small]}>
