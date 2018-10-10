@@ -218,7 +218,8 @@ const styles = {
     fontSize: "12px"
   },
   active: {
-    backgroundColor: "#f6f8fa"
+    backgroundColor: "#f6f8fa",
+    boxShadow: "rgb(209, 213, 218) 0px 1px 7px 0px inset"
   }
 };
 
