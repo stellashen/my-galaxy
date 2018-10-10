@@ -4,6 +4,7 @@ import Radium, { Style, StyleRoot } from "radium";
 import Navbar from "./navbar";
 import Stars from "./stars/stars";
 import Explore from "./explore/explore";
+import Right from "./right/right";
 
 class App extends React.Component {
   render() {
@@ -59,11 +60,16 @@ class App extends React.Component {
             }}
           />
           <Route path="/" component={Navbar} />
-          <Switch>
-            <Route path="/explore" component={Explore} />
-            <Route path="/" component={Stars} />
-            <Redirect from="*" to="/" />
-          </Switch>
+          <section style={[styles.leftSection, styles.scroll]}>
+            <Switch>
+              <Route path="/explore" component={Explore} />
+              <Route path="/" component={Stars} />
+              <Redirect from="*" to="/" />
+            </Switch>
+          </section>
+          <section style={[styles.rightSection, styles.scroll]}>
+            <Right />
+          </section>
         </div>
       </StyleRoot>
     );
@@ -75,6 +81,20 @@ const styles = {
     color: "#000",
     background: "#fff",
     fontFamily: "Gothic A1, sans-serif"
+  },
+  scroll: {
+    height: "calc(100vh - 60px)",
+    overflowY: "scroll"
+  },
+  leftSection: {
+    width: "50%"
+  },
+  rightSection: {
+    position: "fixed",
+    top: "60px",
+    right: "0",
+    width: "50%",
+    borderLeft: "1px solid #d1d5da"
   }
 };
 
