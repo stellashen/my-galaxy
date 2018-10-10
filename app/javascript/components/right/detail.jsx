@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import Loading from "../shared/loading";
 import ErrorMessage from "../shared/error_message";
+import Markdown from "react-markdown";
 
 const GET_README = gql`
   query Readme($repoOwner: String!, $repoName: String!) {
@@ -41,7 +42,11 @@ class Detail extends React.Component {
             return <Loading />;
           }
 
-          return <div style={styles.base}>{repository.object.text}</div>;
+          return (
+            <div style={styles.base}>
+              <Markdown source={repository.object.text} escapeHtml={false} />
+            </div>
+          );
         }}
       </Query>
     );
