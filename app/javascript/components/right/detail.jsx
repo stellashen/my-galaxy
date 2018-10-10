@@ -44,7 +44,11 @@ class Detail extends React.Component {
 
           return (
             <div style={styles.base}>
-              <Markdown source={repository.object.text} escapeHtml={false} />
+              <Markdown
+                source={repository.object.text}
+                escapeHtml={false}
+                className="markdown"
+              />
             </div>
           );
         }}

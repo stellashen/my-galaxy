@@ -13,7 +13,7 @@ class App extends React.Component {
     return (
       <div id="app" style={styles.base}>
         <Style
-          scopeSelector="#app"
+          scopeSelector="#app-left"
           rules={{
             span: {
               display: "block",
@@ -58,14 +58,16 @@ class App extends React.Component {
             }
           }}
         />
-        <Navbar />
-        <section style={[styles.leftSection, styles.scroll]}>
-          <Switch>
-            <Route path="/explore" component={Explore} />
-            <Route path="/" component={Stars} />
-            <Redirect from="*" to="/" />
-          </Switch>
-        </section>
+        <div id="app-left">
+          <Navbar />
+          <section style={[styles.leftSection, styles.scroll]}>
+            <Switch>
+              <Route path="/explore" component={Explore} />
+              <Route path="/" component={Stars} />
+              <Redirect from="*" to="/" />
+            </Switch>
+          </section>
+        </div>
         <section style={[styles.rightSection, styles.scroll]}>
           <Right />
         </section>
