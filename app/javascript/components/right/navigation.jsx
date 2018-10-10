@@ -2,8 +2,11 @@ import React from "react";
 import Radium from "radium";
 
 class Navigation extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   render() {
-    return <div style={styles.base}>nav</div>;
+    return <div style={styles.base}>Clone with SSH: {this.props.sshUrl}</div>;
   }
 }
 

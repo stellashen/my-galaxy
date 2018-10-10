@@ -2,13 +2,15 @@ import React from "react";
 import Radium from "radium";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
+import Markdown from "react-markdown";
 import Loading from "../shared/loading";
 import ErrorMessage from "../shared/error_message";
-import Markdown from "react-markdown";
+import Navigation from "./navigation";
 
 const GET_README = gql`
   query Readme($repoOwner: String!, $repoName: String!) {
     repository(owner: $repoOwner, name: $repoName) {
+      sshUrl
       object(expression: "master:README.md") {
         ... on Blob {
           text
@@ -44,6 +46,7 @@ class Detail extends React.Component {
 
           return (
             <div>
+              <Navigation sshUrl={repository.sshUrl} />
               <div className="Box-header px-2 clearfix">
                 <span className="Box-title pr-3">
                   <svg

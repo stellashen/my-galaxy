@@ -1,7 +1,6 @@
 import React from "react";
 import Radium from "radium";
 import Detail from "./detail";
-import Navigation from "./navigation";
 
 class Right extends React.Component {
   render() {
@@ -9,7 +8,6 @@ class Right extends React.Component {
     const repoName = "my-galaxy";
     return (
       <div style={styles.base}>
-        <Navigation />
         <Detail repoOwner="stellashen" repoName="my-galaxy" />
       </div>
     );
