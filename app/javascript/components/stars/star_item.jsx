@@ -123,8 +123,19 @@ class StarItem extends React.Component {
     }
   }
 
+  isActiveRepo() {
+    if (
+      this.props.currentRepo &&
+      this.props.currentRepo.repoId === this.props.star.node.id
+    ) {
+      return true;
+    }
+    return false;
+  }
+
   handleOpenDetail() {
     const repoInfo = {
+      repoId: this.props.star.node.id,
       repoOwner: this.props.star.node.owner.login,
       repoName: this.props.star.node.name
     };
@@ -142,7 +153,10 @@ class StarItem extends React.Component {
       topicNode => topicNode.node.topic.name
     );
     return (
-      <div style={styles.base} onClick={() => this.handleOpenDetail()}>
+      <div
+        style={this.isActiveRepo() ? [styles.base, styles.active] : styles.base}
+        onClick={() => this.handleOpenDetail()}
+      >
         {this.renderMutation(starred, star)}
         <span dangerouslySetInnerHTML={this.rawMarkup(star)} />
         <span style={[styles.row, styles.small]}>
@@ -202,6 +216,9 @@ const styles = {
   },
   small: {
     fontSize: "12px"
+  },
+  active: {
+    backgroundColor: "#f6f8fa"
   }
 };
 
