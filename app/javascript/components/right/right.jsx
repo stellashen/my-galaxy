@@ -1,15 +1,23 @@
 import React from "react";
 import Radium from "radium";
+import Detail from "./detail";
+import Navigation from "./navigation";
 
 class Right extends React.Component {
   render() {
-    return <div style={styles.base}>right section</div>;
+    return (
+      <div style={styles.base}>
+        <Navigation />
+        <Detail />
+      </div>
+    );
   }
 }
 
 const styles = {
   base: {
-    padding: "20px"
+    display: "flex",
+    flexDirection: "column"
   }
 };
 

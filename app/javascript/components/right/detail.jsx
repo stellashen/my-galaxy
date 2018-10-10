@@ -9,7 +9,8 @@ class Detail extends React.Component {
 
 const styles = {
   base: {
-    color: "red"
+    color: "red",
+    padding: "20px"
   }
 };
 
