@@ -11,6 +11,7 @@ const GET_README = gql`
   query Readme($repoOwner: String!, $repoName: String!) {
     repository(owner: $repoOwner, name: $repoName) {
       sshUrl
+      url
       object(expression: "master:README.md") {
         ... on Blob {
           text
@@ -26,13 +27,14 @@ class Detail extends React.Component {
   }
 
   render() {
-    console.log(this.props);
+    if (!this.props.currentRepo) return null;
+    const { repoOwner, repoName } = this.props.currentRepo;
     return (
       <Query
         query={GET_README}
         variables={{
-          repoOwner: this.props.repoOwner,
-          repoName: this.props.repoName
+          repoOwner,
+          repoName
         }}
       >
         {({ data: { repository }, loading, error }) => {
@@ -67,7 +69,11 @@ class Detail extends React.Component {
               </div>
               <div style={styles.base}>
                 <Markdown
-                  source={repository.object.text}
+                  source={
+                    repository.object
+                      ? repository.object.text
+                      : "No README available"
+                  }
                   escapeHtml={false}
                   className="markdown"
                 />

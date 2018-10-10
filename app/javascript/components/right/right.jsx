@@ -1,14 +1,12 @@
 import React from "react";
 import Radium from "radium";
-import Detail from "./detail";
+import DetailContainer from "./detail_container";
 
 class Right extends React.Component {
   render() {
-    const repoOwner = "stellashen";
-    const repoName = "my-galaxy";
     return (
       <div style={styles.base}>
-        <Detail repoOwner="stellashen" repoName="my-galaxy" />
+        <DetailContainer />
       </div>
     );
   }

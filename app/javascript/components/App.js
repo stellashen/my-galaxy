@@ -88,8 +88,8 @@ const styles = {
   },
   leftSection: {
     width: "50vw",
-    "@media (max-width: 860px)": {
-      width: "430px"
+    "@media (max-width: 900px)": {
+      width: "450px"
     }
   },
   rightSection: {
@@ -98,8 +98,8 @@ const styles = {
     right: "0",
     width: "50vw",
     borderLeft: "1px solid #d1d5da",
-    "@media (max-width: 860px)": {
-      width: "calc(100% - 430px)"
+    "@media (max-width: 900px)": {
+      width: "calc(100% - 450px)"
     }
   }
 };
