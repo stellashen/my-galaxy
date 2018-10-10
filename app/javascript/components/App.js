@@ -58,7 +58,7 @@ class App extends React.Component {
             }
           }}
         />
-        <Route path="/" component={Navbar} />
+        <Navbar />
         <section style={[styles.leftSection, styles.scroll]}>
           <Switch>
             <Route path="/explore" component={Explore} />

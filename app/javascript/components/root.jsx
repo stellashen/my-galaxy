@@ -24,11 +24,11 @@ const getClient = token => {
 
 const Root = ({ token }) => (
   <ApolloProvider client={getClient(token)}>
-    <HashRouter>
-      <StyleRoot>
+    <StyleRoot>
+      <HashRouter>
         <App token={token} />
-      </StyleRoot>
-    </HashRouter>
+      </HashRouter>
+    </StyleRoot>
   </ApolloProvider>
 );
 
