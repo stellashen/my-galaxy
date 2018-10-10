@@ -4,8 +4,9 @@ import { ApolloClient } from "apollo-client";
 import { HttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { HashRouter } from "react-router-dom";
-import App from "./App";
 import { StyleRoot } from "radium";
+import { Provider } from "react-redux";
+import App from "./App";
 
 const getClient = token => {
   const GITHUB_BASE_URL = "https://api.github.com/graphql";
@@ -22,12 +23,14 @@ const getClient = token => {
   });
 };
 
-const Root = ({ token }) => (
+const Root = ({ store, token }) => (
   <ApolloProvider client={getClient(token)}>
     <StyleRoot>
-      <HashRouter>
-        <App token={token} />
-      </HashRouter>
+      <Provider store={store}>
+        <HashRouter>
+          <App token={token} />
+        </HashRouter>
+      </Provider>
     </StyleRoot>
   </ApolloProvider>
 );
