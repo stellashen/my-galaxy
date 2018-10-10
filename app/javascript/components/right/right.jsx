@@ -5,10 +5,12 @@ import Navigation from "./navigation";
 
 class Right extends React.Component {
   render() {
+    const repoOwner = "stellashen";
+    const repoName = "my-galaxy";
     return (
       <div style={styles.base}>
         <Navigation />
-        <Detail />
+        <Detail repoOwner="stellashen" repoName="my-galaxy" />
       </div>
     );
   }
