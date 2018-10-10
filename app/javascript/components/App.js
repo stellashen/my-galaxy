@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
-import Radium, { Style, StyleRoot } from "radium";
+import Radium, { Style } from "radium";
 import Navbar from "./navbar";
 import Stars from "./stars/stars";
 import Explore from "./explore/explore";
@@ -11,67 +11,65 @@ class App extends React.Component {
     const token = this.props.token;
     if (!token) return null;
     return (
-      <StyleRoot>
-        <div id="app" style={styles.base}>
-          <Style
-            scopeSelector="#app"
-            rules={{
-              span: {
-                display: "block",
-                margin: "10px"
-              },
-              strong: {
-                fontWeight: "900",
-                display: "inline"
-              },
-              "a:hover": {
-                cursor: "pointer"
-              },
-              i: {
-                marginRight: "5px"
-              },
-              h1: {
-                padding: "6px 12px",
-                color: "#1E6ED6"
-              },
-              "h1:hover": {
-                textDecoration: "underline"
-              },
-              h2: {
-                fontSize: "14px",
-                lineHeight: "60px",
-                padding: "0 20px"
-              },
-              "h2:hover": {
-                background: "#404044"
-              },
-              h5: {
-                display: "inline"
-              },
-              "h5:hover": {
-                textDecoration: "underline"
-              },
-              small: {
-                display: "block",
-                color: "red",
-                fontSize: "12px",
-                padding: "5px 20px"
-              }
-            }}
-          />
-          <Route path="/" component={Navbar} />
-          <section style={[styles.leftSection, styles.scroll]}>
-            <Switch>
-              <Route path="/explore" component={Explore} />
-              <Route path="/" component={Stars} />
-              <Redirect from="*" to="/" />
-            </Switch>
-          </section>
-          <section style={[styles.rightSection, styles.scroll]}>
-            <Right />
-          </section>
-        </div>
-      </StyleRoot>
+      <div id="app" style={styles.base}>
+        <Style
+          scopeSelector="#app"
+          rules={{
+            span: {
+              display: "block",
+              margin: "10px"
+            },
+            strong: {
+              fontWeight: "900",
+              display: "inline"
+            },
+            "a:hover": {
+              cursor: "pointer"
+            },
+            i: {
+              marginRight: "5px"
+            },
+            h1: {
+              padding: "6px 12px",
+              color: "#1E6ED6"
+            },
+            "h1:hover": {
+              textDecoration: "underline"
+            },
+            h2: {
+              fontSize: "14px",
+              lineHeight: "60px",
+              padding: "0 20px"
+            },
+            "h2:hover": {
+              background: "#404044"
+            },
+            h5: {
+              display: "inline"
+            },
+            "h5:hover": {
+              textDecoration: "underline"
+            },
+            small: {
+              display: "block",
+              color: "red",
+              fontSize: "12px",
+              padding: "5px 20px"
+            }
+          }}
+        />
+        <Route path="/" component={Navbar} />
+        <section style={[styles.leftSection, styles.scroll]}>
+          <Switch>
+            <Route path="/explore" component={Explore} />
+            <Route path="/" component={Stars} />
+            <Redirect from="*" to="/" />
+          </Switch>
+        </section>
+        <section style={[styles.rightSection, styles.scroll]}>
+          <Right />
+        </section>
+      </div>
     );
   }
 }
@@ -87,14 +85,20 @@ const styles = {
     overflowY: "scroll"
   },
   leftSection: {
-    width: "50%"
+    width: "50vw",
+    "@media (max-width: 860px)": {
+      width: "430px"
+    }
   },
   rightSection: {
     position: "fixed",
     top: "60px",
     right: "0",
-    width: "50%",
-    borderLeft: "1px solid #d1d5da"
+    width: "50vw",
+    borderLeft: "1px solid #d1d5da",
+    "@media (max-width: 860px)": {
+      width: "calc(100% - 430px)"
+    }
   }
 };
 
