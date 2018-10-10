@@ -15,8 +15,8 @@ const Loading = () => (
 );
 const styles = {
   base: {
-    color: "#fff",
-    background: "#000",
+    color: "#000",
+    background: "#fff",
     fontFamily: "Play, sans-serif",
     height: "100vh"
   },
