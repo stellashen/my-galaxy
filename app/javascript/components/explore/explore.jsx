@@ -59,10 +59,23 @@ const updateQuery = (previousResult, { fetchMoreResult }) => {
   if (!fetchMoreResult) {
     return previousResult;
   }
-
-  return {
+  console.log({
+    ...previousResult,
     search: {
       ...previousResult.search,
+      pageInfo: {
+        ...fetchMoreResult.search.pageInfo
+      },
+      edges: [...previousResult.search.edges, ...fetchMoreResult.search.edges]
+    }
+  });
+  return {
+    ...previousResult,
+    search: {
+      ...previousResult.search,
+      pageInfo: {
+        ...fetchMoreResult.search.pageInfo
+      },
       edges: [...previousResult.search.edges, ...fetchMoreResult.search.edges]
     }
   };
