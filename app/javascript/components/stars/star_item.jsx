@@ -137,6 +137,14 @@ class StarItem extends React.Component {
     this.props.receiveRepo(repoInfo);
   }
 
+  handleTimeago(t) {
+    const arr = t.slice(0, t.length - 1).split("T");
+    const formattedTime = arr.join(" ");
+    console.log(formattedTime);
+    console.log(new Date(t));
+    return timeago().format(new Date(t));
+  }
+
   render() {
     const star = this.props.star;
     const page = this.props.page;
@@ -176,7 +184,7 @@ class StarItem extends React.Component {
             {star.node.forkCount}
           </div>
           <div style={styles.margin}>
-            Updated {timeago().format(star.node.updatedAt)}
+            Updated {this.handleTimeago(star.node.updatedAt)}
           </div>
         </span>
         <Topics>{topics}</Topics>
