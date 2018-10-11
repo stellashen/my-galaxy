@@ -8,8 +8,8 @@ import StarList from "../stars/star_list";
 import Button from "../shared/button";
 
 const SEARCH_REPOS = gql`
-  query Search($keyword: String!) {
-    search(query: $keyword, type: REPOSITORY, first: 50) {
+  query Search($keyword: String!, $afterCursor: String) {
+    search(query: $keyword, type: REPOSITORY, first: 50, after: $afterCursor) {
       repositoryCount
       pageInfo {
         endCursor
@@ -75,9 +75,6 @@ class Explore extends React.Component {
       keyword: "",
       language: ""
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.emptyInput = this.emptyInput.bind(this);
   }
 
   update(field) {
@@ -85,23 +82,6 @@ class Explore extends React.Component {
       this.setState({
         [field]: e.currentTarget.value
       });
-  }
-
-  emptyInput(field) {
-    return this.setState(state => ({
-      [field]: ""
-    }));
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    this.emptyInput("keyword");
-  }
-
-  handleKeyPress(e) {
-    if (e.key === "Enter") {
-      this.handleSubmit(e);
-    }
   }
 
   render() {
@@ -133,13 +113,18 @@ class Explore extends React.Component {
 
             const totalCount = search.repositoryCount;
 
+            const hasNextPage = search.pageInfo.hasNextPage;
+
             return (
               <div>
                 <span style={styles.header}>
                   Result: <strong>{totalCount}</strong> repositories.
                 </span>
                 <StarList stars={repos} page="search" />
-                {search.pageInfo.hasNextPage && (
+                {!hasNextPage && (
+                  <span>You have reached the end of the list.</span>
+                )}
+                {hasNextPage && (
                   <Button
                     kind="primary"
                     onClick={() =>

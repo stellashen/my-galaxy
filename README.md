@@ -189,8 +189,8 @@ To search among all repos on GitHub:
 
 ```
 const SEARCH_REPOS = gql`
-  query Search($keyword: String!) {
-    search(query: $keyword, type: REPOSITORY, first: 50) {
+  query Search($keyword: String!, $afterCursor: String) {
+    search(query: $keyword, type: REPOSITORY, first: 50, after: $afterCursor) {
       repositoryCount
       pageInfo {
         endCursor

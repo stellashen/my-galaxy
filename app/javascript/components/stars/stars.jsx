@@ -96,13 +96,16 @@ const Stars = () => (
 
       const totalCount = starredRepositories.totalCount;
 
+      const hasNextPage = starredRepositories.pageInfo.hasNextPage;
+
       return (
         <div style={styles.base}>
           <div style={styles.header}>
             You have starred <strong>{totalCount}</strong> repositories.
           </div>
           <StarList stars={starredRepositories.edges} page="stars" />
-          {starredRepositories.pageInfo.hasNextPage && (
+          {!hasNextPage && <span>You have reached the end of the list.</span>}
+          {hasNextPage && (
             <Button
               kind="primary"
               onClick={() =>
