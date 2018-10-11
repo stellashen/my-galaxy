@@ -2,10 +2,10 @@ import React from "react";
 import Radium from "radium";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import Markdown from "react-markdown";
 import Loading from "../shared/loading";
 import ErrorMessage from "../shared/error_message";
 import Navigation from "./navigation";
+import Readme from "./readme";
 
 const GET_README = gql`
   query Readme($repoOwner: String!, $repoName: String!) {
@@ -67,17 +67,7 @@ class Detail extends React.Component {
                   README.md
                 </span>
               </div>
-              <div style={styles.base}>
-                <Markdown
-                  source={
-                    repository.object
-                      ? repository.object.text
-                      : "No README available"
-                  }
-                  escapeHtml={false}
-                  className="markdown"
-                />
-              </div>
+              <Readme repository={repository} />
             </div>
           );
         }}
