@@ -102,50 +102,55 @@ class Explore extends React.Component {
           />
         </span>
 
-        <Query query={SEARCH_REPOS} variables={{ keyword: this.state.keyword }}>
-          {({ data: { search }, loading, error, fetchMore }) => {
-            if (error) {
-              return <ErrorMessage error={error} />;
-            }
+        {this.state.keyword.length > 0 && (
+          <Query
+            query={SEARCH_REPOS}
+            variables={{ keyword: this.state.keyword }}
+          >
+            {({ data: { search }, loading, error, fetchMore }) => {
+              if (error) {
+                return <ErrorMessage error={error} />;
+              }
 
-            if (loading || !search.edges) {
-              return <Loading />;
-            }
+              if (loading || !search.edges) {
+                return <Loading />;
+              }
 
-            const repos = search.edges;
+              const repos = search.edges;
 
-            const totalCount = search.repositoryCount;
+              const totalCount = search.repositoryCount;
 
-            const hasNextPage = search.pageInfo.hasNextPage;
+              const hasNextPage = search.pageInfo.hasNextPage;
 
-            return (
-              <div>
-                <span style={styles.header}>
-                  Result: <strong>{totalCount}</strong> repositories.
-                </span>
-                <StarList stars={repos} page="search" />
-                {!hasNextPage && (
-                  <span>You have reached the end of the list.</span>
-                )}
-                {hasNextPage && (
-                  <Button
-                    kind="primary"
-                    onClick={() =>
-                      fetchMore({
-                        variables: {
-                          afterCursor: search.pageInfo.endCursor
-                        },
-                        updateQuery
-                      })
-                    }
-                  >
-                    Load More
-                  </Button>
-                )}
-              </div>
-            );
-          }}
-        </Query>
+              return (
+                <div>
+                  <span style={styles.header}>
+                    Result: <strong>{totalCount}</strong> repositories.
+                  </span>
+                  <StarList stars={repos} page="search" />
+                  {!hasNextPage && (
+                    <span>You have reached the end of the list.</span>
+                  )}
+                  {hasNextPage && (
+                    <Button
+                      kind="primary"
+                      onClick={() =>
+                        fetchMore({
+                          variables: {
+                            afterCursor: search.pageInfo.endCursor
+                          },
+                          updateQuery
+                        })
+                      }
+                    >
+                      Load More
+                    </Button>
+                  )}
+                </div>
+              );
+            }}
+          </Query>
+        )}
       </div>
     );
   }
