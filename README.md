@@ -7,8 +7,9 @@
 My Galaxy is a web application that aims to help you manage your GitHub stars:
 
 - View repositories you have starred,
-- search for and star new repositories,
-- and un-star repositories.
+- search for new repositories,
+- star/unstar repositories,
+- and open README in the right viewer
 
 ## Table of Contents
 
@@ -23,6 +24,7 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 
 - [Rails 5](https://rubyonrails.org/): A server-side web application framework written in Ruby
 - [React](https://reactjs.org/): A JavaScript library for building user interfaces
+- [Redux](https://redux.js.org/): A JavaScript library for managing application state.
 - [GitHub GraphQL API](https://developer.github.com/v4/): This is an OAuth app calling GitHub's GraphQL API
 - [Apollo Client](https://www.apollographql.com/docs/react/): use GraphQL to build client applications
 - [Radium](https://formidable.com/open-source/radium/): Inline styling library
@@ -42,13 +44,16 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 4. Unstar repositories
 
 - run mutation to unstar a starred repository
+- unstarred repository will disappear from page
 
 5. Search for and star new repositories
 
 - search by keyword
-- run mutation to star a repository
+- run mutation to star/unstar a repository
 
-6. Jest tests
+6. Open README in the right viewer
+
+- click a repository to view its README.md in the right viewer
 
 ## Technical Details
 
@@ -107,7 +112,7 @@ heroku config:add GITHUB_CLIENT_ID='replace with production app id' GITHUB_CLIEN
 
 ### 2 GraphQL query and mutation
 
-Query for getting starred repositories:
+To get starred repositories:
 
 ```
 const GET_STARS = gql`
@@ -165,7 +170,7 @@ const GET_STARS = gql`
 `;
 ```
 
-Mutation for unstarring a starred repository:
+To unstar a starred repository:
 
 ```
 const UNSTAR_REPOSITORY = gql`
@@ -174,6 +179,58 @@ const UNSTAR_REPOSITORY = gql`
       starrable {
         id
         viewerHasStarred
+      }
+    }
+  }
+`;
+```
+
+To search among all repos on GitHub:
+
+```
+const SEARCH_REPOS = gql`
+  query Search($keyword: String!) {
+    search(query: $keyword, type: REPOSITORY, first: 50) {
+      repositoryCount
+      pageInfo {
+        endCursor
+        hasNextPage
+      }
+      edges {
+        cursor
+        node {
+          ... on Repository {
+            id
+            name
+            owner {
+              id
+              login
+            }
+            descriptionHTML
+            url
+            updatedAt
+            primaryLanguage {
+              id
+              name
+              color
+            }
+            stargazers {
+              totalCount
+            }
+            forkCount
+            viewerHasStarred
+            repositoryTopics(first: 20) {
+              edges {
+                node {
+                  topic {
+                    id
+                    name
+                  }
+                }
+              }
+            }
+          }
+        }
       }
     }
   }
