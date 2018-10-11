@@ -14,6 +14,7 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 ## Table of Contents
 
 - [Technologies](#technologies)
+- [Screenshots](#screenshots)
 - [MVP List](#mvp-list)
 - [Technical Details](#technical-details)
   - [1 GitHub OAuth](#1-GitHub-OAuth)
@@ -28,6 +29,26 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 - [GitHub GraphQL API](https://developer.github.com/v4/): This is an OAuth app calling GitHub's GraphQL API
 - [Apollo Client](https://www.apollographql.com/docs/react/): use GraphQL to build client applications
 - [Radium](https://formidable.com/open-source/radium/): Inline styling library
+
+## Screenshots
+
+Before login:
+
+<img src="https://res.cloudinary.com/devleg/image/upload/c_scale,w_1501/v1539257107/screenshot1.png" width="800px" >
+
+Login with Github:
+
+<img src="https://res.cloudinary.com/devleg/image/upload/v1539257102/screenshot2.png" width="800px" >
+
+After login:
+
+1. "My Starred Repos" page: view your stars
+
+<img src="https://res.cloudinary.com/devleg/image/upload/v1539266165/screenshot3.png" width="800px" >
+
+2. "Explore" page: search and star/unstar repositories
+
+<img src="https://res.cloudinary.com/devleg/image/upload/v1539266171/screenshot4.png" width="800px" >
 
 ## MVP List
 
@@ -140,7 +161,6 @@ const GET_STARS = gql`
             }
             description
             url
-            updatedAt
             primaryLanguage {
               id
               name
