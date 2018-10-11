@@ -54,11 +54,6 @@ class StarItem extends React.Component {
     );
   }
 
-  rawMarkup(star) {
-    const rawMarkup = star.node.descriptionHTML;
-    return { __html: rawMarkup };
-  }
-
   renderMutation(starred, star) {
     if (starred) {
       return (
@@ -158,11 +153,17 @@ class StarItem extends React.Component {
         onClick={() => this.handleOpenDetail()}
       >
         {this.renderMutation(starred, star)}
-        <span dangerouslySetInnerHTML={this.rawMarkup(star)} />
+        <span
+          dangerouslySetInnerHTML={{ __html: star.node.descriptionHTML }}
+          style={styles.description}
+        />
         <span style={[styles.row, styles.small]}>
           <div>
             <div
-              style={[styles.circle, { backgroundColor: `${language.color}` }]}
+              style={[
+                styles.circle,
+                { backgroundColor: `${language.color || "black"}` }
+              ]}
             />
             {language.name}
           </div>
@@ -223,6 +224,10 @@ const styles = {
   active: {
     background: "#f6f8fa",
     boxShadow: "rgb(209, 213, 218) 0px 1px 7px 0px inset"
+  },
+  description: {
+    maxHeight: "100px",
+    overflow: "scroll"
   }
 };
 

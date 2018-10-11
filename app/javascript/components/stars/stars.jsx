@@ -43,7 +43,7 @@ const GET_STARS = gql`
             }
             forkCount
             viewerHasStarred
-            repositoryTopics(first: 20) {
+            repositoryTopics(first: 10) {
               edges {
                 node {
                   topic {
