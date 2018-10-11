@@ -52,15 +52,18 @@ class Readme extends React.Component {
         currentIdx = urlEndIdx;
       });
     }
+
+    console.log(text);
+
     // 4. handle img tag
     // example: <img src="...">
     let startIdx = text.indexOf("<img src=");
     while (startIdx !== -1) {
       const endIdx = text.indexOf(">", startIdx);
       const imgText = text.substring(startIdx, endIdx + 1);
-      let urlEnd = imgText.indexOf('" ', 11);
+      let urlEnd = imgText.indexOf('"', 10);
       if (!urlEnd) {
-        urlEnd = imgText.indexOf("' ", 11);
+        urlEnd = imgText.indexOf("'", 10);
       }
       if (urlEnd) {
         const relativeUrl = imgText.substring(10, urlEnd);
@@ -70,15 +73,23 @@ class Readme extends React.Component {
           }/tree/master/${relativeUrl}`;
           const newImgText = `<a href="${absoluteUrl}" target="_blank">${absoluteUrl}</a>`;
           text = text.replace(imgText, newImgText);
+          startIdx = text.indexOf(
+            "<img src=",
+            endIdx - imgText.length + newImgText.length
+          );
+        } else {
+          startIdx = text.indexOf('<img src="', endIdx);
         }
+      } else {
+        startIdx = text.indexOf('<img src="', endIdx);
       }
-      startIdx = text.indexOf('<img src="', endIdx);
     }
     return text;
   }
 
   render() {
     const { repository } = this.props;
+    console.log(repository.object.text);
     return (
       <div style={styles.base}>
         <Markdown
