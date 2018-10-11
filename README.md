@@ -15,11 +15,13 @@ My Galaxy is a web application that aims to help you manage your GitHub stars:
 
 - [Technologies](#technologies)
 - [Screenshots](#screenshots)
+- [How To Use](#how-to-use)
 - [MVP List](#mvp-list)
 - [Technical Details](#technical-details)
   - [1 GitHub OAuth](#1-GitHub-OAuth)
   - [2 GraphQL query and mutation](#2-GraphQL-query-and-mutation)
 - [Images Source](#Images-Source)
+- [References](#references)
 
 ## Technologies
 
@@ -49,6 +51,22 @@ After login:
 2. "Explore" page: search and star/unstar repositories
 
 <img src="https://res.cloudinary.com/devleg/image/upload/v1539266171/screenshot4.png" width="800px" >
+
+## How To Use
+
+First, you need to have a GitHub account.
+
+Go to [Live Site](https://my-galaxy.herokuapp.com/) and click "Sign In with Github" button, you will be redirected to authorize My Galaxy to access your user info, public repository and gists. Enter your credentials and authorize. - Hooray you are in!
+
+Then you can:
+
+1. View your starred repositories.
+
+2. Search for new repositories.
+
+3. Star/unstar repositories.
+
+4. Click a repository to view its README directly on the right side. This way, you can browse through all your repos on one page, so you don't need to open 30 new tabs any more.
 
 ## MVP List
 
