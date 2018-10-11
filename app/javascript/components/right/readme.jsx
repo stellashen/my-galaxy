@@ -8,7 +8,14 @@ class Readme extends React.Component {
   }
 
   handleText(text) {
-    console.log(text);
+    // some images cannot be rendered, change them to links
+
+    // 1. handle Cross-Origin Read Blocking (CORB) blocked
+    // example: ![screenshot](http://...)
+    text = text.replace(/!\[.*?\]\(/g, "[link to image](");
+
+    // 2. handle img tag
+    // example: <img src="...">
     let startIdx = text.indexOf('<img src="');
     while (startIdx !== -1) {
       const endIdx = text.indexOf(">", startIdx);
