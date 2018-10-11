@@ -14,13 +14,15 @@ class Readme extends React.Component {
     // example: ![screenshot](https://github...)
     // Note: don't do this for other sites because images can be uploaded from some sites such as Cloudinary
     const array = text.match(/!\[.*?\]\(/g);
-    array.forEach(el => {
-      const urlStartIdx = text.indexOf(el) + el.length;
-      const url = text.substring(urlStartIdx, urlStartIdx + 14);
-      if (url === "https://github" || url === "http://github") {
-        text = text.replace(el, "[link to image](");
-      }
-    });
+    if (array) {
+      array.forEach(el => {
+        const urlStartIdx = text.indexOf(el) + el.length;
+        const url = text.substring(urlStartIdx, urlStartIdx + 14);
+        if (url === "https://github" || url === "http://github") {
+          text = text.replace(el, "[link to image](");
+        }
+      });
+    }
     // 2. handle img tag
     // example: <img src="...">
     let startIdx = text.indexOf('<img src="');
@@ -49,9 +51,10 @@ class Readme extends React.Component {
           source={
             repository.object
               ? this.handleText(repository.object.text)
-              : "No README available"
+              : `No README available`
           }
           escapeHtml={false}
+          linkTarget="_blank"
           className="markdown"
         />
       </div>
