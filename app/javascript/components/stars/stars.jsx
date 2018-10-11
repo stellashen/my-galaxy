@@ -32,7 +32,6 @@ const GET_STARS = gql`
             }
             descriptionHTML
             url
-            updatedAt
             primaryLanguage {
               id
               name

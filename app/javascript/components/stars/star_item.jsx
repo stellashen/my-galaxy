@@ -1,7 +1,7 @@
 import React from "react";
 import Radium from "radium";
 import gql from "graphql-tag";
-import { Mutation } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import timeago from "timeago.js";
 import Button from "../shared/button";
 import Topics from "../shared/topics";
@@ -24,6 +24,14 @@ const ADD_STAR = gql`
         id
         viewerHasStarred
       }
+    }
+  }
+`;
+
+const GET_REPO = gql`
+  query Readme($repoOwner: String!, $repoName: String!) {
+    repository(owner: $repoOwner, name: $repoName) {
+      updatedAt
     }
   }
 `;
@@ -137,12 +145,29 @@ class StarItem extends React.Component {
     this.props.receiveRepo(repoInfo);
   }
 
-  handleTimeago(t) {
-    const arr = t.slice(0, t.length - 1).split("T");
-    const formattedTime = arr.join(" ");
-    console.log(formattedTime);
-    console.log(new Date(t));
-    return timeago().format(new Date(t));
+  handleTimeago() {
+    return (
+      <Query
+        query={GET_REPO}
+        variables={{
+          repoOwner: this.props.star.node.owner.login,
+          repoName: this.props.star.node.name
+        }}
+      >
+        {({ loading, error, data: { repository } }) => {
+          if (loading) return null;
+          if (error) return null;
+
+          const updatedTime = repository.updatedAt;
+
+          return (
+            <div style={styles.margin}>
+              Updated {timeago().format(new Date(updatedTime))}
+            </div>
+          );
+        }}
+      </Query>
+    );
   }
 
   render() {
@@ -183,9 +208,7 @@ class StarItem extends React.Component {
             <i className="fas fa-code-branch" />
             {star.node.forkCount}
           </div>
-          <div style={styles.margin}>
-            Updated {this.handleTimeago(star.node.updatedAt)}
-          </div>
+          {this.handleTimeago()}
         </span>
         <Topics>{topics}</Topics>
       </div>
