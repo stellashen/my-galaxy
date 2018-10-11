@@ -18,7 +18,7 @@ class Readme extends React.Component {
       array.forEach(el => {
         const urlStartIdx = text.indexOf(el) + el.length;
         const url = text.substring(urlStartIdx, urlStartIdx + 14);
-        if (url === "https://github" || url === "http://github") {
+        if (url === "https://github" || url === "http://github.") {
           text = text.replace(el, "[link to image](");
         }
       });

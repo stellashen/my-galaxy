@@ -6,6 +6,7 @@ import Loading from "../shared/loading";
 import ErrorMessage from "../shared/error_message";
 import Navigation from "./navigation";
 import Readme from "./readme";
+import NoRepo from "./no_repo";
 
 const GET_README = gql`
   query Readme($repoOwner: String!, $repoName: String!) {
@@ -27,7 +28,7 @@ class Detail extends React.Component {
   }
 
   render() {
-    if (!this.props.currentRepo) return null;
+    if (!this.props.currentRepo) return <NoRepo />;
     const { repoOwner, repoName } = this.props.currentRepo;
     return (
       <Query

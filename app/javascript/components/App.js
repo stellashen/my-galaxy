@@ -4,7 +4,7 @@ import Radium, { Style } from "radium";
 import Navbar from "./navbar";
 import Stars from "./stars/stars";
 import Explore from "./explore/explore";
-import Right from "./right/right";
+import DetailContainer from "./right/detail_container";
 
 class App extends React.Component {
   render() {
@@ -69,7 +69,7 @@ class App extends React.Component {
           </section>
         </div>
         <section style={[styles.rightSection, styles.scroll]}>
-          <Right />
+          <DetailContainer />
         </section>
       </div>
     );
