@@ -183,7 +183,7 @@ class StarItem extends React.Component {
             <i className="fas fa-code-branch" />
             {star.node.forkCount}
           </div>
-          {this.handleTimeago(star)}
+          {star.node.viewerHasStarred && this.handleTimeago(star)}
         </span>
         <Topics>{topics}</Topics>
       </div>
