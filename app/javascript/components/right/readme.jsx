@@ -53,8 +53,6 @@ class Readme extends React.Component {
       });
     }
 
-    console.log(text);
-
     // 4. handle img tag
     // example: <img src="...">
     let startIdx = text.indexOf("<img src=");
@@ -89,7 +87,6 @@ class Readme extends React.Component {
 
   render() {
     const { repository } = this.props;
-    console.log(repository.object.text);
     return (
       <div style={styles.base}>
         <Markdown
