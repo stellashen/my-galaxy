@@ -22,6 +22,7 @@ const styles = {
     fontWeight: "600",
     fontFamily: "Play, sans-serif",
     verticalAlign: "baseline",
+    textAlign: "center",
     ":hover": {
       background: "#e6ebf1"
     }
@@ -35,7 +36,8 @@ const styles = {
     fontSize: "14px",
     lineHeight: "20px",
     border: "1px solid rgba(27,31,35,0.2)",
-    borderRadius: "0.25em"
+    borderRadius: "0.25em",
+    minWidth: "64px"
   }
 };
 

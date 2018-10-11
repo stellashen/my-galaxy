@@ -10,10 +10,17 @@ class Readme extends React.Component {
   handleText(text) {
     // some images cannot be rendered, change them to links
 
-    // 1. handle Cross-Origin Read Blocking (CORB) blocked
-    // example: ![screenshot](http://...)
-    text = text.replace(/!\[.*?\]\(/g, "[link to image](");
-
+    // 1. handle Cross-Origin Read Blocking (CORB) for images in Github
+    // example: ![screenshot](https://github...)
+    // Note: don't do this for other sites because images can be uploaded from some sites such as Cloudinary
+    const array = text.match(/!\[.*?\]\(/g);
+    array.forEach(el => {
+      const urlStartIdx = text.indexOf(el) + el.length;
+      const url = text.substring(urlStartIdx, urlStartIdx + 14);
+      if (url === "https://github" || url === "http://github") {
+        text = text.replace(el, "[link to image](");
+      }
+    });
     // 2. handle img tag
     // example: <img src="...">
     let startIdx = text.indexOf('<img src="');
