@@ -291,4 +291,4 @@ Muchmoji https://giphy.com/stickers/space-travel-39pqRFi5Gw0MpGug0w
 
 [How to search with Github GraphQL](https://medium.com/@katopz/how-to-search-with-github-graphql-e6c142dc61ed)
 
-[Regrex Cheat Sheet](https://www.rexegg.com/regex-quickstart.html)
+[Regex Cheat Sheet](https://www.rexegg.com/regex-quickstart.html)
